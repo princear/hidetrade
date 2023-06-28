@@ -9,7 +9,6 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import Checkbox from "expo-checkbox";
 import { Divider } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -41,9 +40,9 @@ const PutUpForSale = (props) => {
       setApiLoader(true)
       getDetails()
       // console.log("🚀 ~ file: PutUpForSale.js ~ line 39 ~ useEffect ~ await AsyncStorage.getItem(user_type)", await AsyncStorage.getItem("user_type"))
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
       console.log("🚀 ~ file: PutUpForSale.js ~ line 41 ~ useEffect ~ webApiUrl", webApiUrl)
-      // let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+      // let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
 
       axios
         .get(webApiUrl)
@@ -63,14 +62,10 @@ const PutUpForSale = (props) => {
 
   var productName = props.route.params.productName;
   var category = props.route.params.category;
-  console.log("🚀 ~ file: PutUpForSale.js ~ line 60 ~ PutUpForSale ~ category", category)
   var subCategory = props.route.params.subCategory;
-  console.log("🚀 ~ file: PutUpForSale.js ~ line 61 ~ PutUpForSale ~ subCategory", subCategory)
   var continent = props.route.params.continent;
   var origin = props.route.params.origin;
-  var specification=props.route.params.Specification;
-  console.log("🚀 ~ file: PutUpForSale.js ~ line 64 ~ PutUpForSale ~ Specification", specification)
-  
+  var Specification=props.route.params.Specification; 
   var size = props.route.params.size;
   var leatherCondition = props.route.params.leatherCondition;
   var tanningLeather = props.route.params.tanningLeather;
@@ -148,8 +143,14 @@ const PutUpForSale = (props) => {
 
   var images = props.route.params.images;
   var document = props.route.params.document;
+  var documentLocation=props.route.params.documentLocation;
+  var packingList=props.route.params.packingList
 
   var leatherColor = props.route.params.leatherColor;
+
+  console.log('document location in put up for sale='+documentLocation)
+  console.log('packing list in sale='+packingList)
+  console.log('images in sale='+images)
 
 
   let arr = [];
@@ -164,7 +165,7 @@ const PutUpForSale = (props) => {
             origin: origin,
             product_brand: "",//"origin",
             continents: continent,//continent,
-            specification:specification,
+            Specification:Specification,
             product_title: productName,
             product_title_itelian: "",//"Prod-1",
             selection_choice:"",// "Nice",
@@ -216,7 +217,7 @@ const PutUpForSale = (props) => {
             Selected_Leathers: labelTableRoll ? "No": "Yes",//"Yes",
             created_date: new Date().toISOString().split('T')[0]//"2022-03-02"
           },
-            console.log("🚀 ~ file: PutUpForSale.js ~ line 213 ~ useEffect ~ Specification", specification)
+            console.log("🚀 ~ file: PutUpForSale.js ~ line 213 ~ useEffect ~ Specification", Specification)
         ];
         const arr3 = leatherCondition.map((value) => ({
           ["multi_category"]: value,
@@ -366,7 +367,7 @@ const PutUpForSale = (props) => {
             origin: origin,
             product_brand: "",//"origin",
             continents: continent,//continent,
-            specification:specification,
+            Specification:Specification,
 
             product_title: productName,
             product_title_itelian: "",//"Prod-1",
@@ -569,7 +570,7 @@ const PutUpForSale = (props) => {
             origin: origin,
             product_brand: "",//"origin,
             continents: continent,//continent,
-            specification:specification,
+            Specification:Specification,
 
             product_title: productName,
             product_title_itelian: "",//"Prod-1",
@@ -772,17 +773,19 @@ const PutUpForSale = (props) => {
   //const arr = [{ productName: productName, category: category[0] }];
 
   // const putUpForSale=async()=>{
-  //   let webApiUrl=`https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductWithLoopData.php`;
+  //   let webApiUrl=`https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData.php`;
   //   console.log('array inside function='+JSON.stringify(await arr));
   //   let final;
   //   final=await arr;
   //   console.log('final for put up for sale='+JSON.stringify(final))
   // }
   const putUpForSaleSubmit = () => {
+    console.log("otherAddress",otherAddress, '!!!!!!! ',toggleCheckBox2)
+    console.log("address",address, ' @@@@@@@@ ', toggleCheckBox)
     setApiLoader(true);
     console.log("inside use call back=" + JSON.stringify(arr));
-    // let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductWithLoopData.php`;
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductWithLoopData_Phase2.php`;
+    // let webApirUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData_Phase2.php`;
 
     axios
       .post(webApirUrl, arr)
@@ -796,6 +799,7 @@ const PutUpForSale = (props) => {
             style: "cancel",
             onPress: () => props.navigation.navigate("Product Details", {
               product_id: res.data?.Product_Details[0]?.product_id,
+              address: toggleCheckBox ? address : otherAddress,
             }),
           },
         ]);
@@ -956,6 +960,8 @@ const PutUpForSale = (props) => {
                         surfaceSelectionSize: surfaceSelectionSize,
                         images: images,
                         document: document,
+                        documentLocation:documentLocation,
+                        packingList:packingList,
 
                         labelTableRoll: labelTableRoll,
                         quantityTableRoll: quantityTableRoll,
@@ -1053,6 +1059,8 @@ const PutUpForSale = (props) => {
                         surfaceSelectionSize: surfaceSelectionSize,
                         images: images,
                         document: document,
+                        documentLocation:documentLocation,
+                        packingList:packingList,
 
                         labelTableRoll: labelTableRoll,
                         quantityTableRoll: quantityTableRoll,
@@ -1123,7 +1131,84 @@ const PutUpForSale = (props) => {
               >
                 <View>
                   <TouchableOpacity
-                    onPress={() => props.navigation.navigate("Packing List")}
+                    onPress={() => props.navigation.navigate("Packing List",{
+                      productName: productName,
+                        category: category,
+                        subCategory: subCategory,
+                        size: size,
+                        leatherCondition: leatherCondition,
+                        preservationType: preservationType,
+                        destination: destination,
+                        trim: trim,
+                        flay: flay,
+                        rawDefects: rawDefects,
+                        hairLeather: hairLeather,
+                        color: color,
+                        tanningLeather: tanningLeather,
+                        substanceThickness: substanceThickness,
+                        fromValue: fromValue,
+                        toValue: toValue,
+                        certificate: certificate,
+                        kindOfPacking: kindOfPacking,
+                        kindOfShipment: kindOfShipment,
+                        lastInfo: lastInfo,
+                        goodsInspection: goodsInspection,
+                        origin: origin,
+                        weightCatType: weightCatType,
+                        weightCatType2: weightCatType2,
+                        weightCatType3: weightCatType3,
+                        weightSelectionSize: weightSelectionSize,
+
+                        surfaceCatType: surfaceCatType,
+                        surfaceCatType2: surfaceCatType2,
+                        surfaceCatType3: surfaceCatType3,
+                        surfaceSelectionSize: surfaceSelectionSize,
+                        images: images,
+                        document: document,
+                        documentLocation:documentLocation,
+                        packingList:packingList,
+
+                        labelTableRoll: labelTableRoll,
+                        quantityTableRoll: quantityTableRoll,
+                        priceTableRoll: priceTableRoll,
+                        labelTablePrice: labelTablePrice,
+
+                        labelSelection: labelSelection,
+                        quantitySelection: quantitySelection,
+                        labelSelectionUnit: labelSelectionUnit,
+                        labelSelectionPrice: labelSelectionPrice,
+                        priceSelection: priceSelection,
+
+                        labelSelection2: labelSelection2,
+                        quantitySelection2: quantitySelection2,
+                        labelSelectionUnit2: labelSelectionUnit2,
+                        labelSelectionPrice2: labelSelectionPrice2,
+                        priceSelection2: priceSelection2,
+
+                        labelSelection3: labelSelection3,
+                        quantitySelection3: quantitySelection3,
+                        labelSelectionUnit3: labelSelectionUnit3,
+                        labelSelectionPrice3: labelSelectionPrice3,
+                        priceSelection3: priceSelection3,
+
+                        labelSelection4: labelSelection4,
+                        quantitySelection4: quantitySelection4,
+                        labelSelectionUnit4: labelSelectionUnit4,
+                        labelSelectionPrice4: labelSelectionPrice4,
+                        priceSelection4: priceSelection4,
+
+                        labelSelection5: labelSelection5,
+                        quantitySelection5: quantitySelection5,
+                        labelSelectionUnit5: labelSelectionUnit5,
+                        labelSelectionPrice5: labelSelectionPrice5,
+                        priceSelection5: priceSelection5,
+
+                        labelSelection6: labelSelection6,
+                        quantitySelection6: quantitySelection6,
+                        labelSelectionUnit6: labelSelectionUnit6,
+                        labelSelectionPrice6: labelSelectionPrice6,
+                        priceSelection6: priceSelection6,
+                    })}
                   >
                     <Image
                       style={{ width: 80, height: 80 }}
@@ -1167,8 +1252,62 @@ const PutUpForSale = (props) => {
                         lastInfo: lastInfo,
                         goodsInspection: goodsInspection,
                         preservationType:
-                          preservationType != "" ? preservationType : null,
+                        preservationType != "" ? preservationType : null,
                         images: images,
+                        document:document,
+                        documentLocation:documentLocation,
+                        packingList:packingList,
+                        Specification:Specification,
+                        continent:continent,
+                        origin:origin,
+                        address: toggleCheckBox ? address : otherAddress,
+
+                        labelTableRoll: labelTableRoll,
+                        quantityTableRoll: quantityTableRoll,
+                        priceTableRoll: priceTableRoll,
+                        labelTablePrice: labelTablePrice,
+
+                        labelSelection: labelSelection,
+                        quantitySelection: quantitySelection,
+                        labelSelectionUnit: labelSelectionUnit,
+                        labelSelectionPrice: labelSelectionPrice,
+                        priceSelection: priceSelection,
+
+                        labelSelection2: labelSelection2,
+                        quantitySelection2: quantitySelection2,
+                        labelSelectionUnit2: labelSelectionUnit2,
+                        labelSelectionPrice2: labelSelectionPrice2,
+                        priceSelection2: priceSelection2,
+
+                        labelSelection3: labelSelection3,
+                        quantitySelection3: quantitySelection3,
+                        labelSelectionUnit3: labelSelectionUnit3,
+                        labelSelectionPrice3: labelSelectionPrice3,
+                        priceSelection3: priceSelection3,
+
+                        labelSelection4: labelSelection4,
+                        quantitySelection4: quantitySelection4,
+                        labelSelectionUnit4: labelSelectionUnit4,
+                        labelSelectionPrice4: labelSelectionPrice4,
+                        priceSelection4: priceSelection4,
+
+                        labelSelection5: labelSelection5,
+                        quantitySelection5: quantitySelection5,
+                        labelSelectionUnit5: labelSelectionUnit5,
+                        labelSelectionPrice5: labelSelectionPrice5,
+                        priceSelection5: priceSelection5,
+
+                        labelSelection6: labelSelection6,
+                        quantitySelection6: quantitySelection6,
+                        labelSelectionUnit6: labelSelectionUnit6,
+                        labelSelectionPrice6: labelSelectionPrice6,
+                        priceSelection6: priceSelection6,
+                      //   where_are_leathers_comp_address:
+                      //   toggleCheckBox == true ? address : null,
+                      //  where_are_leathers_other_address:
+                      //   toggleCheckBox2 == true && otherAddress != null
+                      //     ? otherAddress
+                      //     : null,
                       })
                     }
                   >

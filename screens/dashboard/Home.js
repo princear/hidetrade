@@ -7,8 +7,11 @@ import RegisterButton from "../../components/RegisterButton";
 
 const Home = (props) => {
 const [userType, setUserType] = useState('')
-  useEffect(async ()=>{
-    setUserType(await AsyncStorage.getItem('user_type'))
+const getDetails=async()=>{
+  setUserType(await AsyncStorage.getItem('user_type'))
+}
+  useEffect(()=>{
+    getDetails()
     const backAction = () => {
       Alert.alert("Hold on!", "Are you sure you want to go back?", [
         {

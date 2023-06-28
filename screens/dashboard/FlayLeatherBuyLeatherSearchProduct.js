@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,Image, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -37,7 +36,7 @@ const FlayLeatherBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllFlayTypeLeatherList/ViewAllFlayTypeLeatherList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllFlayTypeLeatherList/ViewAllFlayTypeLeatherList.php`;
       axios.get(webApiUrl).then((res) => {
         setFlay(res.data.Output);
         setApiLoader(false);

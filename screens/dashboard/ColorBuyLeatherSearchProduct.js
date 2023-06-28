@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   ScrollView,Image
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
 
 import Colors from "../../constants/Colors";

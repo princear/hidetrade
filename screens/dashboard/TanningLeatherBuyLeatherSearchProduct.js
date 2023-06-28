@@ -10,7 +10,6 @@ import {
   ActivityIndicator
 } from "react-native";
 import axios from "axios";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -51,7 +50,7 @@ const TanningLeatherBuyLeatherSearchProduct = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              "http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
+              "http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
               image_name,
           }}
         />
@@ -62,7 +61,7 @@ const TanningLeatherBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
       axios.get(webApiUrl).then((res) => {
         setTanningLeather(res.data);
         setDataLoaded(true);

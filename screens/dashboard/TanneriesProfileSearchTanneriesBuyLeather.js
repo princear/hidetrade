@@ -10,7 +10,6 @@ import {
   ActivityIndicator,
   Alert
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import ButtonComp from '../../components/ButtonComp'
@@ -41,12 +40,16 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
   const first_name = props.route.params.first_name;
   //console.log('user id='+first_name);
 
-  useEffect(async () => {
+  const getDetails=async()=>{
     setUserType(await AsyncStorage.getItem('user_type'))
+    setId(await AsyncStorage.getItem("user_id"));
+  }
+
+  useEffect(() => {
+    getDetails()
     if (dataLoad == false) {
-      setId(await AsyncStorage.getItem("user_id"));
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Tanneries`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Tanneries`;
       console.log('webapiurl=' + webApiUrl)
       axios.get(webApiUrl).then(async (res) => {
         console.log("abc");
@@ -57,7 +60,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
         // setProfile(res.data.Output);
         setProfile(res.data.User_Details);
 
-        let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+        let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
         const data = new FormData();
         data.append("user_id_who_got_ratings", user_id);
         let responseFeedback = await fetch(webapiurl, {
@@ -81,12 +84,12 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
         setDataLoaded(true);
       }).catch((err) => console.log(err));
     }
-  }, []);
+  }, [getDetails]);
 
   const Feedback = async () => {
     console.log("inside feedback button");
     console.log("id=" + id + " fId=" + user_id);
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
     const data = new FormData();
     data.append("asked_by_rating_review_user1_id", id);
     data.append("to_rating_review_user2_id", user_id);
@@ -101,7 +104,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
     let responseJSON = await res.json();
     //console.log('response in feedback after button press'+JSON.stringify(responseJSON));
 
-    let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
+    let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
     const dataAcceptOrReject = new FormData();
     dataAcceptOrReject.append("asked_by_rating_review_user1_id", id);
     dataAcceptOrReject.append("user_id_who_will_get_ratings", user_id);
@@ -140,7 +143,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
   const onFeedbackEnter = async () => {
     if (feedbackText != "") {
       console.log("text feedback=" + feedbackText);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
       const data = new FormData();
       data.append("logged_in_user_id", id);
       data.append("user_id_who_will_get_ratings", user_id);
@@ -164,7 +167,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
         Alert.alert("", responseJSON.Message, [{
           text: 'Ok', style: 'cancel', onPress: () => {
             setApiLoader(true)
-            let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Tanneries`;
+            let webApiUrl = `https://www.hidetrade.eu/app/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Tanneries`;
             console.log('webapiurl=' + webApiUrl)
             axios.get(webApiUrl).then(async (res) => {
               console.log("abc");
@@ -174,7 +177,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
               setProfile(res.data.User_Details)
               // setProfile(res.data.Output);
 
-              let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+              let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
               const data = new FormData();
               data.append("user_id_who_got_ratings", user_id);
               let responseFeedback = await fetch(webapiurl, {
@@ -267,7 +270,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                       <Image
                         source={{
                           uri:
-                            `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                            `http://www.hidetrade.eu/app/UPLOAD_file/` +
                             profile[0].profile_image,
                         }}
                         resizeMode="cover"
@@ -282,7 +285,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                     {/* <Image
                       source={{
                         uri:
-                          `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                          `http://www.hidetrade.eu/app/UPLOAD_file/` +
                           profile.profile_image,
                       }}
                       resizeMode="contain"
@@ -447,7 +450,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                                 marginTop: 10,
                               }}
                             >
-                              <Image source={{uri:`http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}} />
+                              <Image source={{uri:`http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}} />
                               <Text allowFontScaling={false}>{item.Leather_Condition}</Text>
                             </View>
                           )}
@@ -483,7 +486,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                                   marginTop: 10,
                                 }}
                               >
-                                <Image source={{uri:`https://refuel.site/projects/hidetrade/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
+                                <Image source={{uri:`https://www.hidetrade.eu/app/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
                                 <Text allowFontScaling={false}>{item.kind_of_leather_on_sell}</Text>
                               </View>
                             )}
@@ -514,7 +517,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                               flex: 1,
                               marginTop: 10,
                             }}
-                          ><Image source={{ uri: `http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/` + item.Leather_Condition_image }} style={{ width: 80, height: 80 }} />
+                          ><Image source={{ uri: `http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/` + item.Leather_Condition_image }} style={{ width: 80, height: 80 }} />
                           </View>
                         )}
                       />
@@ -534,7 +537,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                               flex: 1,
                               marginTop: 10,
                             }}
-                          ><Image source={{ uri: `https://refuel.site/projects/hidetrade/UPLOAD_file/` + item.kind_of_leather_on_sell_image }} style={{ width: 80, height: 80 }} />
+                          ><Image source={{ uri: `https://www.hidetrade.eu/app/UPLOAD_file/` + item.kind_of_leather_on_sell_image }} style={{ width: 80, height: 80 }} />
                           </View>
                         )}
                       />
@@ -556,7 +559,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                             }}
                           >
                             {/* <Text>{item.tanningLeathers}</Text> */}
-                            <Image source={{ uri: `http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/` + item.tanningLeathers_image }} style={{ width: 80, height: 80 }} />
+                            <Image source={{ uri: `http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/` + item.tanningLeathers_image }} style={{ width: 80, height: 80 }} />
                           </View>
                         )}
                       />
@@ -617,7 +620,7 @@ const TanneriesProfileSearchTanneriesBuyLeather = (props) => {
                                 flex: 1,
                               }}>
                                 {item.product_upload_images.length != 0 ? (
-                                  <Image source={{ uri: `https://refuel.site/projects/hidetrade/UPLOAD_file/` + item.product_upload_images[0].images_name }} resizeMode='contain' style={{ width: 80, height: 80, borderRadius: 20 }} />
+                                  <Image source={{ uri: `https://www.hidetrade.eu/app/UPLOAD_file/` + item.product_upload_images[0].images_name }} resizeMode='contain' style={{ width: 80, height: 80, borderRadius: 20 }} />
                                 ) : (
                                   <Image source={require('../../assets/IconUpload3.png')} style={{ width: 80, height: 80 }} />
                                 )}

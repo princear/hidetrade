@@ -8,9 +8,7 @@ import {
   StyleSheet,
   useWindowDimensions, ScrollView
 } from "react-native";
-import Icon from 'react-native-vector-icons/Ionicons';
-import Constants from "expo-constants";
-import axios from "axios";
+
 
 import Colors from "../../constants/Colors";
 

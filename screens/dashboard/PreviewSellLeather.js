@@ -7,15 +7,13 @@ import {
   StyleSheet,
   Image, Modal
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import { Divider } from "react-native-paper";
 import Checkbox from "expo-checkbox";
 
 import Colors from "../../constants/Colors";
 
-const PreviewSellLeather = (props) => {
+    const PreviewSellLeather = (props) => {
 
-   
     const [inspection, setInspection] = useState(undefined);
     
     const [modalVisible, setModalVisible] = useState(false);
@@ -23,7 +21,6 @@ const PreviewSellLeather = (props) => {
   var productName = props.route.params.productName;
   var category = props.route.params.category;
   var subCategory = props.route.params.subCategory;
-  console.log("🚀 ~ file: PreviewSellLeather.js ~ line 27 ~ PreviewSellLeather ~ subCategory", subCategory)
   var size = props.route.params.size;
   var leatherCondition = props.route.params.leatherCondition;
   var tanningLeather = props.route.params.tanningLeather;
@@ -43,15 +40,77 @@ const PreviewSellLeather = (props) => {
   var goodsInspection = props.route.params.goodsInspection;
   var preservationType = props.route.params.preservationType;
   var images=props.route.params.images;
+  var document=props.route.params.document;
+  var documentLocation=props.route.params.documentLocation;
+  var packingList=props.route.params.packingList;
   var continent=props.route.params.continents;
-  var origin=props.route.params.origin
-  // var Specification=props.route.param.Specification;
+  var origin=props.route.params.origin;
+  var Specification=props.route.params.Specification;
+
+  var weightCatType = props.route.params.weightCatType;
+  var weightCatType2 = props.route.params.weightCatType2;
+  var weightCatType3 = props.route.params.weightCatType3;
+  var weightSelectionSize = props.route.params.weightSelectionSize;
+  var surfaceCatType = props.route.params.surfaceCatType;
+  var surfaceCatType2 = props.route.params.surfaceCatType2;
+  var surfaceCatType3 = props.route.params.surfaceCatType3;
+  var surfaceSelectionSize = props.route.params.surfaceSelectionSize;
+
+  var labelTableRoll = props.route.params.labelTableRoll;
+  var quantityTableRoll = props.route.params.quantityTableRoll;
+  var priceTableRoll = props.route.params.priceTableRoll;
+  var labelTablePrice = props.route.params.labelTablePrice;
+
+  var labelSelection = props.route.params.labelSelection;
+  var quantitySelection = props.route.params.quantitySelection;
+  var labelSelectionUnit = props.route.params.labelSelectionUnit;
+  var priceSelection = props.route.params.priceSelection;
+  var labelSelectionPrice = props.route.params.labelSelectionPrice;
+
+  var labelSelection2 = props.route.params.labelSelection2;
+  var quantitySelection2 = props.route.params.quantitySelection2;
+  var labelSelectionUnit2 = props.route.params.labelSelectionUnit2;
+  var priceSelection2 = props.route.params.priceSelection2;
+  var labelSelectionPrice2 = props.route.params.labelSelectionPrice2;
+
+  var labelSelection3 = props.route.params.labelSelection3;
+  var quantitySelection3 = props.route.params.quantitySelection3;
+  var labelSelectionUnit3 = props.route.params.labelSelectionUnit3;
+  var priceSelection3 = props.route.params.priceSelection3;
+  var labelSelectionPrice3 = props.route.params.labelSelectionPrice3;
+
+  var labelSelection4 = props.route.params.labelSelection4;
+  var quantitySelection4 = props.route.params.quantitySelection4;
+  var labelSelectionUnit4 = props.route.params.labelSelectionUnit4;
+  var priceSelection4 = props.route.params.priceSelection4;
+  var labelSelectionPrice4 = props.route.params.labelSelectionPrice4;
+
+  var labelSelection5 = props.route.params.labelSelection5;
+  var quantitySelection5 = props.route.params.quantitySelection5;
+  var labelSelectionUnit5 = props.route.params.labelSelectionUnit5;
+  var priceSelection5 = props.route.params.priceSelection5;
+  var labelSelectionPrice5 = props.route.params.labelSelectionPrice5;
+
+  var labelSelection6 = props.route.params.labelSelection6;
+  var quantitySelection6 = props.route.params.quantitySelection6;
+  var labelSelectionUnit6 = props.route.params.labelSelectionUnit6;
+  var priceSelection6 = props.route.params.priceSelection6;
+  var labelSelectionPrice6 = props.route.params.labelSelectionPrice6;
+  
+  
+
+
   console.log("preservation=" + preservationType);
   console.log("tanning leather=" + tanningLeather);
   console.log("goods inspection="+goodsInspection);
-  console.log("images in preview="+images[0])
+  // console.log("images in preview="+images[0])
+  // console.log('document='+document)
+
+  console.log('document Location='+documentLocation)
+  console.log('packing list preview='+packingList)
 
   useEffect(()=>{
+    console.log("🚀 ~ file: PreviewSellLeather.js ~ line 61 ~ useEffect ~ props.route.params.address", props.route.params.address)
     if (goodsInspection != "Yes") {
       setInspection(false);
     } else {
@@ -59,9 +118,6 @@ const PreviewSellLeather = (props) => {
     }
   },[])
 
- 
-
-  
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -78,6 +134,7 @@ const PreviewSellLeather = (props) => {
                     <Text allowFontScaling={false} style={{fontWeight:'bold'}}>Category: {category.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{value} </Text>))} </Text>
                     {/* <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>SubCategory: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{subCategory} </Text>))}</Text> */}
 
+                    {/* <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>origin: {size.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{origin} </Text>))}</Text> */}
                     
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Size: {size.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{size} </Text>))}</Text>
                     {/* <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Origin: {size.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{origin} </Text>))}</Text> */}
@@ -95,6 +152,7 @@ const PreviewSellLeather = (props) => {
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Flay: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{flay} </Text>))}</Text>
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>RawDefects: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{rawDefects} </Text>))}</Text>
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Color: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{color} </Text>))}</Text>
+                    <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Specification: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{Specification} </Text>))}</Text>
                    
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>HairLeather: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{hairLeather} </Text>))}</Text>
                     <Text allowFontScaling={false} style={{fontWeight:'bold',marginVertical:5}}>Certificate: {subCategory.map((value)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{certificate} </Text>))}</Text>
@@ -135,8 +193,94 @@ const PreviewSellLeather = (props) => {
                 }}
                 horizontal={true}
               >
-                <View style={{}}>
-                  <TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    onPress={()=>props.navigation.navigate('PreviewDocsCertificatesSellLeather',{
+                      productName: productName,
+                      category: category,
+                      subCategory: subCategory,
+                      size: size,
+                      leatherCondition: leatherCondition,
+                      preservationType: preservationType,
+                      destination: destination,
+                      trim: trim,
+                      flay: flay,
+                      rawDefects: rawDefects,
+                      hairLeather: hairLeather,
+                      color: color,
+                      tanningLeather: tanningLeather,
+                      substanceThickness: substanceThickness,
+                      fromValue: fromValue,
+                      toValue: toValue,
+                      certificate: certificate,
+                      kindOfPacking: kindOfPacking,
+                      kindOfShipment: kindOfShipment,
+                      lastInfo: lastInfo,
+                      goodsInspection: goodsInspection,
+                      tanningLeather: tanningLeather,
+                      substanceThickness: substanceThickness,
+                      fromValue: fromValue,
+                      toValue: toValue,
+                      origin:origin,
+                      continent:continent,
+                      Specification:Specification,
+                      weightCatType: weightCatType,
+                      weightCatType2: weightCatType2,
+                      weightCatType3: weightCatType3,
+                      weightSelectionSize: weightSelectionSize,
+
+                      surfaceCatType: surfaceCatType,
+                      surfaceCatType2: surfaceCatType2,
+                      surfaceCatType3: surfaceCatType3,
+                      surfaceSelectionSize: surfaceSelectionSize,
+
+                      labelTableRoll: labelTableRoll,
+                      quantityTableRoll: quantityTableRoll,
+                      priceTableRoll: priceTableRoll,
+                      labelTablePrice: labelTablePrice,
+
+                      labelSelection: labelSelection,
+                      quantitySelection: quantitySelection,
+                      labelSelectionUnit: labelSelectionUnit,
+                      labelSelectionPrice: labelSelectionPrice,
+                      priceSelection: priceSelection,
+
+                      labelSelection2: labelSelection2,
+                      quantitySelection2: quantitySelection2,
+                      labelSelectionUnit2: labelSelectionUnit2,
+                      labelSelectionPrice2: labelSelectionPrice2,
+                      priceSelection2: priceSelection2,
+
+                      labelSelection3: labelSelection3,
+                      quantitySelection3: quantitySelection3,
+                      labelSelectionUnit3: labelSelectionUnit3,
+                      labelSelectionPrice3: labelSelectionPrice3,
+                      priceSelection3: priceSelection3,
+
+                      labelSelection4: labelSelection4,
+                      quantitySelection4: quantitySelection4,
+                      labelSelectionUnit4: labelSelectionUnit4,
+                      labelSelectionPrice4: labelSelectionPrice4,
+                      priceSelection4: priceSelection4,
+
+                      labelSelection5: labelSelection5,
+                      quantitySelection5: quantitySelection5,
+                      labelSelectionUnit5: labelSelectionUnit5,
+                      labelSelectionPrice5: labelSelectionPrice5,
+                      priceSelection5: priceSelection5,
+
+                      labelSelection6: labelSelection6,
+                      quantitySelection6: quantitySelection6,
+                      labelSelectionUnit6: labelSelectionUnit6,
+                      labelSelectionPrice6: labelSelectionPrice6,
+                      priceSelection6: priceSelection6,
+                      images: images,
+                      // document:document
+                      document: document,
+                      documentLocation:documentLocation,
+                      packingList:packingList
+                    })}
+                  >
                     {/* <Image
                       source={require("../../assets/IconDocuments.png")}
                       style={{
@@ -156,12 +300,96 @@ const PreviewSellLeather = (props) => {
                 </View>
 
                 <View>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=>props.navigation.navigate('PreviewPackingListSellLeather',{
+                    productName: productName,
+                    category: category,
+                    subCategory: subCategory,
+                    size: size,
+                    leatherCondition: leatherCondition,
+                    preservationType: preservationType,
+                    destination: destination,
+                    trim: trim,
+                    flay: flay,
+                    rawDefects: rawDefects,
+                    hairLeather: hairLeather,
+                    color: color,
+                    tanningLeather: tanningLeather,
+                    substanceThickness: substanceThickness,
+                    fromValue: fromValue,
+                    toValue: toValue,
+                    certificate: certificate,
+                    kindOfPacking: kindOfPacking,
+                    kindOfShipment: kindOfShipment,
+                    lastInfo: lastInfo,
+                    goodsInspection: goodsInspection,
+                    tanningLeather: tanningLeather,
+                    substanceThickness: substanceThickness,
+                    fromValue: fromValue,
+                    toValue: toValue,
+                    origin:origin,
+                    continent:continent,
+                    Specification:Specification,
+                    weightCatType: weightCatType,
+                    weightCatType2: weightCatType2,
+                    weightCatType3: weightCatType3,
+                    weightSelectionSize: weightSelectionSize,
+
+                    surfaceCatType: surfaceCatType,
+                    surfaceCatType2: surfaceCatType2,
+                    surfaceCatType3: surfaceCatType3,
+                    surfaceSelectionSize: surfaceSelectionSize,
+
+                    labelTableRoll: labelTableRoll,
+                    quantityTableRoll: quantityTableRoll,
+                    priceTableRoll: priceTableRoll,
+                    labelTablePrice: labelTablePrice,
+
+                    labelSelection: labelSelection,
+                    quantitySelection: quantitySelection,
+                    labelSelectionUnit: labelSelectionUnit,
+                    labelSelectionPrice: labelSelectionPrice,
+                    priceSelection: priceSelection,
+
+                    labelSelection2: labelSelection2,
+                    quantitySelection2: quantitySelection2,
+                    labelSelectionUnit2: labelSelectionUnit2,
+                    labelSelectionPrice2: labelSelectionPrice2,
+                    priceSelection2: priceSelection2,
+
+                    labelSelection3: labelSelection3,
+                    quantitySelection3: quantitySelection3,
+                    labelSelectionUnit3: labelSelectionUnit3,
+                    labelSelectionPrice3: labelSelectionPrice3,
+                    priceSelection3: priceSelection3,
+
+                    labelSelection4: labelSelection4,
+                    quantitySelection4: quantitySelection4,
+                    labelSelectionUnit4: labelSelectionUnit4,
+                    labelSelectionPrice4: labelSelectionPrice4,
+                    priceSelection4: priceSelection4,
+
+                    labelSelection5: labelSelection5,
+                    quantitySelection5: quantitySelection5,
+                    labelSelectionUnit5: labelSelectionUnit5,
+                    labelSelectionPrice5: labelSelectionPrice5,
+                    priceSelection5: priceSelection5,
+
+                    labelSelection6: labelSelection6,
+                    quantitySelection6: quantitySelection6,
+                    labelSelectionUnit6: labelSelectionUnit6,
+                    labelSelectionPrice6: labelSelectionPrice6,
+                    priceSelection6: priceSelection6,
+                    images: images,
+                    // document:document
+                    document: document,
+                    documentLocation:documentLocation,
+                    packingList:packingList
+                  })} >
                   <Image
                     style={{ width: 80, height: 80, marginTop:10, alignSelf:'center' }}
                     source={require("../../assets/ByClient/IconPakinglist.png")} resizeMode='contain'
                   />
-                    <Text allowFontScaling={false}>Paking List</Text>
+                    <Text style={{textAlign:'center'}} allowFontScaling={false}>Paking List</Text>
                   </TouchableOpacity>
                 </View>
               </ScrollView>
@@ -213,7 +441,9 @@ const PreviewSellLeather = (props) => {
                       }}
                       resizeMode="contain"
                     />
-                    <Text allowFontScaling={false} style={{textAlign:'center'}}>Where?</Text>
+                   <Text allowFontScaling={false} style={{marginVertical:5}}>where : {props.route.params.address}</Text> 
+                    
+                    {/* <Text allowFontScaling={false} style={{textAlign:'center'}}>Where?</Text> */}
                   </TouchableOpacity>
                 </View>
 

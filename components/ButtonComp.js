@@ -6,7 +6,7 @@ import Colors from "../constants/Colors";
 const ButtonComp = (props) => {
   return (
     <View style={styles.mainView}>
-      <TouchableOpacity style={styles.buttonStyle} onPress={props.onPress}>
+      <TouchableOpacity style={{...styles.buttonStyle, ...props.style}} onPress={props.onPress}>
         <View style={{ marginLeft: 5, justifyContent: "center" }}>
           <Text
             style={{

@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   StyleSheet,Alert, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -46,7 +45,7 @@ const SubCategorySellLeather = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              "https://refuel.site/projects/hidetrade/UPLOAD_file/" +
+              "https://www.hidetrade.eu/app/UPLOAD_file/" +
               image_name,
           }}
         />
@@ -57,7 +56,7 @@ const SubCategorySellLeather = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/SubcategoryDataAPI/RestController.php?view=all`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/SubcategoryDataAPI/RestController.php?view=all`;
       axios.get(webApiUrl).then((res) => {
         console.log("SubCategory Response", res)
         setSubCategory(res.data);
@@ -69,7 +68,7 @@ const SubCategorySellLeather = (props) => {
   }, []);
 
   useEffect(() => {
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllProductSize/ViewAllProductSize.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllProductSize/ViewAllProductSize.php`;
     axios
       .get(webApiUrl)
       .then((res) => {

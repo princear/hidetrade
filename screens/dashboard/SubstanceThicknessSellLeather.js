@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import axios from "axios";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -99,7 +98,7 @@ const SubstanceThicknessSellLeather = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSubstansesAndThicknessList/ViewAllSubstansesAndThicknessList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSubstansesAndThicknessList/ViewAllSubstansesAndThicknessList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log(
           "response in substance and thickness=" + JSON.stringify(res.data)

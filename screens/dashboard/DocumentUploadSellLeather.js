@@ -9,7 +9,7 @@ import {
   FlatList,
 } from "react-native";
 //import * as ImagePicker from "expo-image-picker";
-import Icon from "react-native-vector-icons/Ionicons";
+import {Ionicons} from "@expo/vector-icons"
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //import * as DocumentPicker from 'react-native-document-picker';
@@ -32,30 +32,36 @@ const DocumentUploadSellLeather = (props) => {
 
     if ((result.type = "success")) {
       setDocument((value) => [...value, result.uri]);
+      console.log("uploaded?" + result.uri);
       //setDocuments((value) => [...value, result]);
       fileBase64 = await FileSystem.readAsStringAsync(result.uri, {
         encoding: "base64",
       });
       setDocuments((value) => [...value, fileBase64]);
-      console.log("filebase 64=" + fileBase64);
-      uploadDocument({ uri: fileBase64 });
+      console.log('document new='+documents)
+      // console.log("filebase 64=" + fileBase64);
+      // uploadDocument({ uri: fileBase64 });
     }
 
     //console.log(result);
   };
 
-  console.log("documents=" + documents); 
+  // console.log("documents=" + documents); 
 
   const uploadDocument = async (fileBase64) => {
     // var document64Param = `${fileBase64.uri}`;
     var document64Param = fileBase64.uri;
-    console.log("document 64 param=" + document64Param);
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductMultiImages.php`;
-    let object = [{ product_id: "0" }, { pdocument: document64Param }];
-    console.log("insisde upload document=" + JSON.stringify(object));
+    // console.log("document 64 param=" + document64Param);
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductMultiImages.php`;
+    const arr= documents.map((value) => ({
+      ["pdocument"]: value,
+    }));
+    // let object = [{ product_id: "0" }, { pdocument: document64Param }];
+    let object = [{ product_id: "0" }]
+    console.log("insisde upload document=" + JSON.stringify(arr.concat(...object)));
 
     axios
-      .post(webApiUrl, object)
+      .post(webApiUrl, object.concat(...arr))
       .then((res) => {
         console.log("response of document=" + JSON.stringify(res.data));
       })
@@ -68,7 +74,7 @@ const DocumentUploadSellLeather = (props) => {
     document;
     //setImage(image)
     //AsyncStorage.setItem("image",image);
-    console.log("inside useffect=" + JSON.stringify(documents));
+    // console.log("inside useffect=" + JSON.stringify(documents));
   }, [document, documents]);
 
   console.log("document=" + document.length);
@@ -102,7 +108,7 @@ const DocumentUploadSellLeather = (props) => {
   //   const uploadImage = async (base64String) => {
   //     //var image64Param=`data:image/jpg;base64,${base64String.uri}`;
   //     var image64Param = `${base64String.uri}`;
-  //     let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductMultiImages.php`;
+  //     let webApiUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductMultiImages.php`;
   //     let object = [{ product_id: "0" }, { pimage: image64Param }];
   //     //console.log('object='+JSON.stringify(object))
 
@@ -189,8 +195,15 @@ const DocumentUploadSellLeather = (props) => {
   var labelSelectionPrice6 = props.route.params.labelSelectionPrice6;
   var images = props.route.params.images;
   var d = props.route.params.document;
+  var documentLocation=props.route.params.documentLocation;
+  var packingList=props.route.params.packingList;
+
+  console.log(documentLocation)
+
 
   console.log("d=" + d.length);
+
+  console.log('images in document='+images)
 
   console.log("certificate in document=" + certificate);
 
@@ -221,7 +234,7 @@ const DocumentUploadSellLeather = (props) => {
               <View style={{ marginTop: 10 }}>
                 <TouchableOpacity onPress={pickDocument}>
                   <View style={{ flexDirection: "row" }}>
-                    <Icon name="document-outline" size={60} />
+                    <Ionicons name="document-outline" size={60} />
                     <Text allowFontScaling={false} style={{ alignSelf: "center" }}>{value}</Text>
                     {documents[index] ? (
                       <Text
@@ -367,10 +380,12 @@ const DocumentUploadSellLeather = (props) => {
                 images: images,
                 // document:document
                 document: documents,
+                documentLocation:document,
+                packingList:packingList
               })
             }
           >
-            <Icon name="chevron-back-outline" size={30} color={Colors.text} />
+            <Ionicons name="chevron-back-outline" size={30} color={Colors.text} />
             <Text
               style={{
                 fontSize: 20,

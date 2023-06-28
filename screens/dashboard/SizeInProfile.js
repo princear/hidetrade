@@ -10,7 +10,6 @@ import {
   ActivityIndicator,Alert
 } from "react-native";
 import axios from "axios";
-import Icon from "react-native-vector-icons/Ionicons";
 import { StackActions } from '@react-navigation/native';
 
 import Colors from "../../constants/Colors";
@@ -39,7 +38,7 @@ const SizeInProfile = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllProductSize/ViewAllProductSize.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllProductSize/ViewAllProductSize.php`;
       axios
         .get(webApiUrl)
         .then((res) => {
@@ -58,7 +57,7 @@ const SizeInProfile = (props) => {
     console.log('inside edit profile')
     console.log('inside final of edit profile='+JSON.stringify(final))
     setApiLoader(true);
-    let webApirUrl=`https://refuel.site/projects/hidetrade/APIs/UpdateProfile/UpdateProfile.php`;
+    let webApirUrl=`https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
     axios.post(webApirUrl, final).then((response)=>{
         console.log('response in edit profile='+JSON.stringify(response.data))
         setApiLoader(false);

@@ -7,7 +7,6 @@ import {
   FlatList,
   TouchableOpacity,Image, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -100,7 +99,7 @@ const HairLeatherSellLeather = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllHairTypeLeatherList/ViewAllHairTypeLeatherList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllHairTypeLeatherList/ViewAllHairTypeLeatherList.php`;
     axios
       .get(webApiUrl)
       .then((res) => {
@@ -110,7 +109,7 @@ const HairLeatherSellLeather = (props) => {
         setHairLeather(res.data.Output);
       })
       .catch((err) => console.log(err));
-    let webApiUrlColor = `https://refuel.site/projects/hidetrade/APIs/ViewAllColorLeatherList/ViewAllColorLeatherList.php`;
+    let webApiUrlColor = `https://www.hidetrade.eu/app/APIs/ViewAllColorLeatherList/ViewAllColorLeatherList.php`;
     axios
       .get(webApiUrlColor)
       .then((res) => {

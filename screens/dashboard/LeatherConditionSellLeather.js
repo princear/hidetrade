@@ -9,7 +9,6 @@ import {
   StyleSheet,Alert,
   ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -49,7 +48,7 @@ const LeatherConditionSellLeather = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+              "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
               image_name,
           }}
         />
@@ -71,7 +70,7 @@ const LeatherConditionSellLeather = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/ViewAllLeatherConditionList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/ViewAllLeatherConditionList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log("response in new screen=" + JSON.stringify(res.data));
         setLeatherCondition(res.data);
@@ -142,7 +141,7 @@ const LeatherConditionSellLeather = (props) => {
                   //       style={{ width: 100, height: 100 }}
                   //       source={{
                   //         uri:
-                  //           "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+                  //           "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
                   //           item.image_name,
                   //       }}
                   //     />

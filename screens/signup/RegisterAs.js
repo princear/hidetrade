@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Constants from "expo-constants";
-import Icon from 'react-native-vector-icons/Ionicons'
+import {Ionicons} from '@expo/vector-icons'
 
 import ButtonComp from "../../components/ButtonComp";
 import RegisterButton from "../../components/RegisterButton";
@@ -22,7 +22,7 @@ const RegisterAs = (props) => {
         backgroundColor: "white",
       }}
     >
-      <Icon name="chevron-back-outline" size={30} style={{marginTop:5}} onPress={()=>props.navigation.goBack()} />
+      <Ionicons name="chevron-back-outline" size={30} style={{marginTop:5}} onPress={()=>props.navigation.goBack()} />
       <View style={{ marginHorizontal: 10, justifyContent:'center', flex:1 }}>
         <View style={{ alignItems: "center", marginTop: 30,  }}>
           <Text allowFontScaling={false}

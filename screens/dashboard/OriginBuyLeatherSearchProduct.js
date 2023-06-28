@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   FlatList, Image, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -29,7 +28,7 @@ const OriginBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSelectionTypeList/ViewAllSelectionTypeList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionTypeList/ViewAllSelectionTypeList.php`;
     axios.get(webApiUrl).then((res) => {
       setSelection(res.data.Output);
       setApiLoader(false);

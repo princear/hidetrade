@@ -28,7 +28,7 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Tanneries&user_id=${user_id}`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Tanneries&user_id=${user_id}`;
       axios
         .get(webApirUrl)
         .then((res) => {
@@ -123,8 +123,8 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
 
                             }}
                           >
-                            <View style={{ flexDirection: 'row'}}>
-                              <View style={{marginTop:15}}>
+                            <View style={{ flexDirection: 'row' }}>
+                              <View style={{ marginTop: 15 }}>
                                 {item.product_upload_images.length == 0 ? (
                                   <Image source={require('../../assets/IconUpload3.png')} style={{ width: 120, height: 120 }} />
                                 ) : (
@@ -133,11 +133,11 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                       width: 120,
                                       height: 120,
                                       borderRadius: 8,
-                                      
+
                                     }}
                                     source={{
                                       uri:
-                                        `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                        `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                         item.product_upload_images[0].images_name,
                                     }}
                                   />
@@ -146,13 +146,10 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
 
 
                               <View style={{ marginLeft: 10, padding: 10 }}>
-
-
-
-                                <View style={{ flexDirection: "row", }}>
+                                 <View style={{ flexDirection: "row", }}>
                                   <Text
                                     allowFontScaling={false}
-                                    style={{ fontWeight: "bold", width: 200 ,}}
+                                    style={{ fontWeight: "bold", width: 200, }}
                                     numberOfLines={1}
                                     ellipsizeMode="tail"
                                   >
@@ -165,15 +162,15 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                     </Text>
                                   </Text>
                                 </View>
-                          
-                               
-                              <View style={{ flexDirection: 'row' }}>
+
+
+                                <View style={{ flexDirection: 'row' }}>
                                   <Text
                                     allowFontScaling={false} style={{ fontWeight: "bold" }}
                                   >
                                     Selection :{" "}
                                   </Text>
-                                 
+
                                   <Text allowFontScaling={false}>
                                     <Text
                                       allowFontScaling={false}
@@ -181,30 +178,30 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                       ellipsizeMode='tail'
                                       numberOfLines={1}
                                     >
-                                       {item.Selected_Leathers == "Yes" ? `${item.selection}`: `Table Roll`}
+                                      {item.Selected_Leathers == "Yes" ? `${item.selection}` : `Table Roll`}
                                     </Text>
                                   </Text>
                                 </View>
                                 <View style={{ flexDirection: "row" }}>
-                                  
+
                                   <Text
                                     allowFontScaling={false}
                                     style={{ fontWeight: "bold" }}
                                   >
                                     Category :{" "}
                                   </Text>
-                                 
+
                                   <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%' }} numberOfLines={1}>
-                                 
+
                                     {item.product_Leaher_shape?.map(
                                       (values) => (
                                         <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{values.title}, </Text>
                                       )
                                     )}
-                                    
+
                                   </Text>
                                 </View>
-                                
+
 
                                 <View style={{ flexDirection: 'row' }}>
                                   <Text
@@ -212,14 +209,14 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                   >
                                     Sub-category :{" "}
                                   </Text>
-                                  <Text allowFontScaling={false}style={{ fontWeight: 'bold', width: '100%', }} numberOfLines={1}>
-                                  
+                                  <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%', }} numberOfLines={1}>
+
                                     {item.Sub_Category_Details?.map(
                                       (values) => (
                                         <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{values.brand_title}, </Text>
                                       )
                                     )}
-                                 
+
                                   </Text>
                                 </View>
 
@@ -234,7 +231,7 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
 
                                   {<Text allowFontScaling={false}>
                                     {/* For the time being showing continent */}
-                                    {item.originORcountryName}</Text>} 
+                                    {item.originORcountryName}</Text>}
 
                                 </View>
 
@@ -253,7 +250,7 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                         allowFontScaling={false}
                                         style={{ fontWeight: "normal" }}
                                       >
-                                        {abc.category}, 
+                                        {abc.category}
                                       </Text>
                                     ))}
                                   </Text>
@@ -269,16 +266,16 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                   >
                                     Tanning :{" "}
                                   </Text>
-                                 
+
                                   <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%', }} numberOfLines={1}>
-                                   
-                                   {item.product_tanning_leathers?.map(
-                                     (values) => {
-                                      return <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{values.tanningLeathers}, </Text>
+
+                                    {item.product_tanning_leathers?.map(
+                                      (values) => {
+                                        return <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{values.tanningLeathers}, </Text>
                                       }
-                                   )}
-                                 </Text>
-                                  
+                                    )}
+                                  </Text>
+
 
                                 </View>
 
@@ -356,13 +353,13 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                     Color :{" "}
                                   </Text>
                                   <Text
-                                      allowFontScaling={false}
-                                      style={{ fontWeight: "normal", width: 180 }}
-                                      ellipsizeMode='tail'
-                                      numberOfLines={1}
-                                    >
-                                      {item.product_color?.map((values)=>(<Text>{values.Color}, </Text>))}
-                                    </Text>
+                                    allowFontScaling={false}
+                                    style={{ fontWeight: "normal", width: 180 }}
+                                    ellipsizeMode='tail'
+                                    numberOfLines={1}
+                                  >
+                                    {item.product_color?.map((values) => (<Text>{values.Color}, </Text>))}
+                                  </Text>
                                 </View>
 
                                 <View style={{ flexDirection: 'row' }}>
@@ -392,8 +389,8 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                     Quantity :{" "}
                                   </Text>
 
-                                  <Text allowFontScaling={false} > 
-                                    {item.Selected_Leathers == "Yes" ? `${item.selectionQuantity} ${item.selectionQuantityUnit}`: `${item.tableRollLeatherQty} ${item.tableRollLeatherQtySelection}`}</Text>
+                                  <Text allowFontScaling={false} >
+                                    {item.Selected_Leathers == "Yes" ? `${item.selectionQuantity} ${item.selectionQuantityUnit}` : `${item.tableRollLeatherQty} ${item.tableRollLeatherQtySelection}`}</Text>
                                 </View>
 
 
@@ -410,7 +407,7 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
                                       ellipsizeMode='tail'
                                       numberOfLines={1}
                                     >
-                                      {item.specification} 
+                                      {item.specification}
                                     </Text>
                                   </Text>
                                 </View>
@@ -420,10 +417,10 @@ const ProductsSearchTanneriesBuyLeather = (props) => {
 
                                   <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%' }} numberOfLines={1}>
                                     Price :{" "}
-                                        <Text allowFontScaling={false} style={{ fontWeight: 'normal', marginLeft: 2 }}>
-                                          {item.Selected_Leathers == "Yes" ? `${item.SelectionPrice} ${item.SelectionPriceUnit} / ${item.selectionQuantityUnit}`: `${item.tableRollLeatherPrice} ${item.tableRollLeatherPriceUnit?item.tableRollLeatherPriceUnit: ''} / ${item.tableRollLeatherQtySelection}`}
-                                        </Text>
-                                      
+                                    <Text allowFontScaling={false} style={{ fontWeight: 'normal', marginLeft: 2 }}>
+                                      {item.Selected_Leathers == "Yes" ? `${item.SelectionPrice} ${item.SelectionPriceUnit} / ${item.selectionQuantityUnit}` : `${item.tableRollLeatherPrice} ${item.tableRollLeatherPriceUnit ? item.tableRollLeatherPriceUnit : ''} / ${item.tableRollLeatherQtySelection}`}
+                                    </Text>
+
                                   </Text>
                                 </View>
 

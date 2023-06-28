@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import axios from "axios";
 import { TextInput } from "react-native-paper";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -25,7 +24,7 @@ const SearchTanneriesBuyLeather = (props) => {
   //   const fetchAPI = async () => {
   //     try {
   //           const response = await fetch(
-  //               `https://refuel.site/projects/hidetrade/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`
+  //               `https://www.hidetrade.eu/app/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`
   //           );
   //           const data = await response.json();
   //           console.log(data);
@@ -35,11 +34,11 @@ const SearchTanneriesBuyLeather = (props) => {
   //       }
   //   };
 
-  useEffect(async () => {
+  useEffect( () => {
     //fetchAPI();
     if(dataLoad==false){
       setApiLoader(true)
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`;
     axios
       .get(webApirUrl)
       .then((res) => {
@@ -115,7 +114,7 @@ const SearchTanneriesBuyLeather = (props) => {
                           <Image
                             source={{
                               uri:
-                                `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                 item.profile_image,
                             }}
                             resizeMode="cover"

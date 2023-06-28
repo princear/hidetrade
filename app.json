@@ -2,7 +2,7 @@
   "expo": {
     "name": "hidetrade",
     "slug": "hidetrade",
-    "version": "1.0.1",
+    "version": "16.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,9 +19,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.HideTrade.Hide",
-      "buildNumber": "1.0.28"
-      
+      "bundleIdentifier": "com.HideTrade.HideTrade",
+      "buildNumber": "1.0.31"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,9 +28,10 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.HideTrade.Hide",
-      "versionCode":2
-     
-
+      "versionCode": 18,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -40,6 +40,28 @@
       "eas": {
         "projectId": "246beb0c-6a55-4780-928f-eb6e958e5fd5"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "buildToolsVersion": "33.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "13.0"
+          }
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
+    "owner" : "eastsons"
   }
 }

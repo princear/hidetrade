@@ -11,7 +11,6 @@ import {
   RefreshControl,
   BackHandler, Alert
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -20,6 +19,7 @@ import { useIsFocused } from '@react-navigation/native';
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
+import { Platform } from "expo-modules-core";
 
 const UserProfile = (props) => {
   const [profile, setProfile] = useState(undefined);
@@ -50,7 +50,7 @@ const UserProfile = (props) => {
       setUser_type(await AsyncStorage.getItem("user_type"));
      
 
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
       console.log("webapiurl=" + webApiUrl);
       axios.get(webApiUrl).then(async (res) => {
         console.log("abc");
@@ -59,7 +59,7 @@ const UserProfile = (props) => {
         console.log("response of profile in api call=" + JSON.stringify(res.data));
         setProfile(res.data.User_Details);
 
-        let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+        let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
         const data = new FormData();
         data.append("user_id_who_got_ratings", id);
         let responseFeedback = await fetch(webapiurl, {
@@ -99,7 +99,7 @@ const UserProfile = (props) => {
         getDetails()
        
         if(id!=undefined && user_type!=undefined){
-          let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+          let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
         console.log("webapiurl=" + webApiUrl);
         axios.get(webApiUrl).then(async (res) => {
           console.log("abc");
@@ -108,7 +108,7 @@ const UserProfile = (props) => {
           console.log("response of profile=" + JSON.stringify(res.data));
           setProfile(res.data.User_Details);
 
-          let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+          let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
           const data = new FormData();
           data.append("user_id_who_got_ratings", id);
           let responseFeedback = await fetch(webapiurl, {
@@ -139,36 +139,36 @@ const UserProfile = (props) => {
     }
   }, [id, user_type, response]);
 
-  const onRefresh = useCallback(async () => {
-    setRefreshing(true);
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
-    console.log("webapiurl=" + webApiUrl);
-    axios.get(webApiUrl).then(async (res) => {
-      console.log("abc");
-      //console.log('response='+JSON.stringify(res.data.Output));
-      //setProfile(res.data.User_Details);
-      console.log("response of profile=" + JSON.stringify(res.data));
-      setProfile(res.data.User_Details);
+  // const onRefresh = useCallback(async () => {
+  //   setRefreshing(true);
+  //   let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+  //   console.log("webapiurl=" + webApiUrl);
+  //   axios.get(webApiUrl).then(async (res) => {
+  //     console.log("abc");
+  //     //console.log('response='+JSON.stringify(res.data.Output));
+  //     //setProfile(res.data.User_Details);
+  //     console.log("response of profile=" + JSON.stringify(res.data));
+  //     setProfile(res.data.User_Details);
 
-      let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
-      const data = new FormData();
-      data.append("user_id_who_got_ratings", id);
-      let responseFeedback = await fetch(webapiurl, {
-        method: "post",
-        body: data,
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+  //     const data = new FormData();
+  //     data.append("user_id_who_got_ratings", id);
+  //     let responseFeedback = await fetch(webapiurl, {
+  //       method: "post",
+  //       body: data,
+  //       headers: {
+  //         Accept: "*/*",
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      let responseJSON = await responseFeedback.json();
-      console.log(
-        "list of feedback in user profile=" + JSON.stringify(responseJSON)
-      );
-    });
-    setRefreshing(false);
-  }, [id, user_type]);
+  //     let responseJSON = await responseFeedback.json();
+  //     console.log(
+  //       "list of feedback in user profile=" + JSON.stringify(responseJSON)
+  //     );
+  //   });
+  //   setRefreshing(false);
+  // }, [id, user_type]);
 
   console.log("id in profile=" + id);
   console.log("type in profile=" + user_type);
@@ -198,9 +198,6 @@ const UserProfile = (props) => {
         ) : (
           <View style={{ marginHorizontal: 10, marginTop: 20, flex: 1 }}>
             <ScrollView showsVerticalScrollIndicator={false}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
             >
               <View>
                 {profile != undefined || profile != null ? (
@@ -236,7 +233,7 @@ const UserProfile = (props) => {
                           {/* <Image
                         source={{
                           uri:
-                            `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                            `http://www.hidetrade.eu/app/UPLOAD_file/` +
                             value.profile_image,
                         }}
                         resizeMode="contain"
@@ -255,7 +252,7 @@ const UserProfile = (props) => {
                             style={{ width: 120, height: 120, borderRadius: 8 }}
                             source={{
                               uri:
-                                `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                 value.profile_image,
                             }}
                           />
@@ -264,7 +261,7 @@ const UserProfile = (props) => {
                             <Image
                               source={{
                                 uri:
-                                  `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                  `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                   value.logo_upload,
                               }}
                               //resizeMode="contain"
@@ -421,7 +418,7 @@ const UserProfile = (props) => {
                                     <Image
                                       source={{
                                         uri:
-                                          `http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/` +
+                                          `http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/` +
                                           item.Leather_Condition_image,
                                       }}
                                       style={{ width: 80, height: 80 }}
@@ -476,7 +473,7 @@ const UserProfile = (props) => {
                                     <Image
                                       source={{
                                         uri:
-                                          `https://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                          `https://www.hidetrade.eu/app/UPLOAD_file/` +
                                           item.kind_of_leather_on_sell_image,
                                       }}
                                       style={{ width: 80, height: 80 }}
@@ -522,7 +519,7 @@ const UserProfile = (props) => {
                                     marginTop: 10,
                                   }}
                                 >
-                                  <Image source={{ uri: `http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/` + item.Leather_Condition_image }} style={{ width: 80, height: 80 }} />
+                                  <Image source={{ uri: `http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/` + item.Leather_Condition_image }} style={{ width: 80, height: 80 }} />
                                   {/* <Text allowFontScaling={false}>{item.Leather_Condition}</Text> */}
                                 </View>
                               )}
@@ -544,7 +541,7 @@ const UserProfile = (props) => {
                                     marginTop: 10,
                                   }}
                                 >
-                                  <Image source={{ uri: `https://refuel.site/projects/hidetrade/UPLOAD_file/` + item.kind_of_leather_on_sell_image }} style={{ width: 80, height: 80 }} />
+                                  <Image source={{ uri: `https://www.hidetrade.eu/app/UPLOAD_file/` + item.kind_of_leather_on_sell_image }} style={{ width: 80, height: 80 }} />
                                 </View>
                               )}
                             />
@@ -565,7 +562,7 @@ const UserProfile = (props) => {
                                     marginTop: 10,
                                   }}
                                 >
-                                  <Image source={{ uri: `http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/` + item.Tanning_leathers_image }} style={{ width: 80, height: 80 }} />
+                                  <Image source={{ uri: `http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/` + item.Tanning_leathers_image }} style={{ width: 80, height: 80 }} />
                                 </View>
                               )}
                             />
@@ -622,7 +619,7 @@ const UserProfile = (props) => {
                       justifyContent: "flex-end",
                       flex: 1,
                     }}
-                    onPress={() => props.navigation.navigate("Profile")}
+                    onPress={() => props.navigation.navigate("Profile", { subId : (user_type === "Tanneries") ?  profile[0].subscription_id : "" })}
                   >
                     <Text
                       allowFontScaling={false}
@@ -642,6 +639,42 @@ const UserProfile = (props) => {
                   </TouchableOpacity>
                 </View>
               </View>
+              {(user_type === "Tanneries" && Platform.OS === "android") ? (
+                <View style={{ flexDirection: "row", marginBottom: 15 }}>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      flex: 1,
+                    }}
+                  >
+                    <TouchableOpacity
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "flex-end",
+                        flex: 1,
+                      }}
+                      onPress={() => props.navigation.navigate("Subscription", { timestamp : profile[0].timestamp, subId : profile[0].subscription_id })}
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={{ fontSize: 22, alignSelf: "center", color: "#62B0A2" }}
+                      >
+                        Subscription
+                      </Text>
+                      <Image
+                        source={require("../../assets/ByClient/BOTTOMNEXT.png")}
+                        style={{
+                          width: 20,
+                          height: 20,
+                          marginHorizontal: 10,
+                          alignSelf: "center",
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              ):(null)}
             </View>
           </View>
         )}</View>

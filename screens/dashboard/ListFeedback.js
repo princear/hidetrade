@@ -10,10 +10,10 @@ const ListFeedback = (props) => {
   const [apiLoader, setApiLoader] = useState(true);
   const [response, setResponse] = useState(undefined);
 
-  useEffect(async () => {
+  const getDetails=async()=>{
     if (dataLoad == false) {
       setId(await AsyncStorage.getItem("user_id"));
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
       const data = new FormData();
       data.append("user_id_who_got_ratings", id);
       let res = await fetch(webApirUrl, {
@@ -36,7 +36,11 @@ const ListFeedback = (props) => {
         setApiLoader(false);
       }
     }
-  }, [id, response]);
+  }
+
+  useEffect(() => {
+    getDetails()
+  }, [id, response, getDetails]);
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import {Ionicons} from '@expo/vector-icons'
 import { TextInput } from "react-native-paper";
 
 import Colors from "../../constants/Colors";
@@ -107,7 +107,7 @@ const ColorSellLeather = (props) => {
               style={{ flexDirection: "row" }}
               onPress={() => props.navigation.goBack()}
             >
-              <Icon name="chevron-back-outline" size={30} color={Colors.text} />
+              <Ionicons name="chevron-back-outline" size={30} color={Colors.text} />
               <Text
                 style={{
                   fontSize: 20,
@@ -228,7 +228,7 @@ const ColorSellLeather = (props) => {
               >
                 Next
               </Text>
-              <Icon
+              <Ionicons
                 name="chevron-forward-outline"
                 size={30}
                 color={Colors.text}

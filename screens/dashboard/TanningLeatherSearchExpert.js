@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, TouchableOpacity, FlatList, StyleSheet, Image } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import {Ionicons} from '@expo/vector-icons'
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -33,7 +33,7 @@ const TanningLeatherSearchExpert = (props) => {
           style={{ width: 100, height: 100 }}
           source={{
             uri:
-              "http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
+              "http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
               image_name,
           }}
         />
@@ -42,7 +42,7 @@ const TanningLeatherSearchExpert = (props) => {
   };
 
   useEffect(() => {
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
     axios.get(webApiUrl).then((res) => {
       setTanningLeather(res.data);
     });
@@ -82,7 +82,7 @@ const TanningLeatherSearchExpert = (props) => {
                   //       style={{ width: 100, height: 100 }}
                   //       source={{
                   //         uri:
-                  //           "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+                  //           "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
                   //           item.image_name,
                   //       }}
                   //     />
@@ -103,7 +103,7 @@ const TanningLeatherSearchExpert = (props) => {
               style={{ flexDirection: "row" }}
               onPress={() => props.navigation.goBack()}
             >
-              <Icon name="chevron-back-outline" size={30} color={Colors.text} />
+              <Ionicons name="chevron-back-outline" size={30} color={Colors.text} />
               <Text
                 style={{
                   fontSize: 20,
@@ -141,7 +141,7 @@ const TanningLeatherSearchExpert = (props) => {
               >
                 Next
               </Text>
-              <Icon
+              <Ionicons
                 name="chevron-forward-outline"
                 size={30}
                 color={Colors.text}

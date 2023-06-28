@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import axios from "axios";
 import { Button, Menu, Divider, Provider } from "react-native-paper";
-import Icon from "react-native-vector-icons/Ionicons";
 import { Dropdown } from "react-native-element-dropdown";
 
 import Colors from "../../constants/Colors";
@@ -34,7 +33,7 @@ const SearchAreaBuyProductSearchArea = (props) => {
 // const populateCountryOrOrigin = (continent) => {
   
 //   // setApiLoader(true);
-//   let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent.name}`;
+//   let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent.name}`;
 //   axios.get(webApirUrl).then((res) => {
 //     setCountryDropDown(res.data.Country_List);
 //     // setApiLoader(false);
@@ -47,7 +46,7 @@ const SearchAreaBuyProductSearchArea = (props) => {
 useEffect(() => {
   if (dataLoad == false) {
     setApiLoader(true)
-    let webApirUrl = 'https://refuel.site/projects/hidetrade/APIs/ViewAllContinents/ViewAllContinents.php'
+    let webApirUrl = 'https://www.hidetrade.eu/app/APIs/ViewAllContinents/ViewAllContinents.php'
     axios.get(webApirUrl).then((res) => {
       
       setContinentDropDown(res.data.Continents_List);
@@ -59,11 +58,11 @@ useEffect(() => {
 
 
 
-  // useEffect(async () => {
+  // useEffect( () => {
   //   if (dataLoad == false) {
   //     setApiLoader(true);
-  //     let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllCountryOrOrigin/ViewAllCountryOrOrigin.php`;
-  //     // let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent_name}`;
+  //     let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCountryOrOrigin/ViewAllCountryOrOrigin.php`;
+  //     // let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent_name}`;
 
   //     axios.get(webApirUrl).then((res) => {
   //       console.log(

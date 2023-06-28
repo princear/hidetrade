@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   FlatList,Image
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 import { SelectCountry } from "react-native-element-dropdown";

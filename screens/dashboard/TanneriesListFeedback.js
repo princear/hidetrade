@@ -22,10 +22,10 @@ const TanneriesListFeedback = (props) => {
   const [dataLoad, setDataLoaded] = useState(false);
   const [apiLoader, setApiLoader] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Tanneries`;
       axios
         .get(webApirUrl)
         .then((res) => {
@@ -127,7 +127,7 @@ const TanneriesListFeedback = (props) => {
                           <Image
                             source={{
                               uri:
-                                `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                 item.profile_image,
                             }}
                             resizeMode="cover"

@@ -5,10 +5,14 @@ import { View, Text, BackHandler, Alert } from "react-native";
 import RegisterButton from "../../components/RegisterButton";
 
 const Buy = (props) => {
-const [userType ,setUserType] = useState('')
+const [userType ,setUserType] = useState(undefined)
 
-  useEffect(async ()=>{
+  const getDetails=async()=>{
     setUserType(await AsyncStorage.getItem("user_type"))
+  }
+
+  useEffect( ()=>{
+    getDetails()
     console.log("!!!!!!!userType",userType)
     const backAction = () => {
       Alert.alert("Hold on!", "Are you sure you want to go back?", [
@@ -28,7 +32,7 @@ const [userType ,setUserType] = useState('')
     );
 
     return () => backHandler.remove();
-  },[])
+  },[getDetails])
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
     <View style={{ marginHorizontal: 20, justifyContent: "center", flex: 1 }}>

@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from "react";
 import { View, Text, TouchableOpacity, Image, BackHandler, Alert } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import RegisterButton from "../../components/RegisterButton";
 import Colors from "../../constants/Colors";

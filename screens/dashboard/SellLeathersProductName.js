@@ -8,7 +8,6 @@ import {
   Alert, Image
 } from "react-native";
 import { TextInput } from "react-native-paper";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 

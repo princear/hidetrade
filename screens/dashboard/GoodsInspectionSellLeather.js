@@ -18,7 +18,9 @@ const GoodsInspectionSellLeather = (props) => {
   const [goodsInspection, setGoodsInspection] = useState(data);
   const [selected, setSelected] = useState([]);
   const [images, setImages] = useState([]);
-  const [document, setDocument]=useState([])
+  const [document, setDocument]=useState([]);
+  const [documentLocation, setDocumentLocation]=useState([])
+  const [packingList, setPackingList]=useState([])
 
   var productName = props.route.params.productName;
   var category = props.route.params.category;
@@ -228,6 +230,8 @@ const GoodsInspectionSellLeather = (props) => {
                     surfaceSelectionSize:surfaceSelectionSize,
                     images:images,
                     document:document,
+                    documentLocation:documentLocation,
+                    packingList:packingList,
 
                     labelTableRoll:labelTableRoll,
                     quantityTableRoll:quantityTableRoll,
@@ -314,7 +318,9 @@ const GoodsInspectionSellLeather = (props) => {
                     surfaceCatType3:surfaceCatType3,
                     surfaceSelectionSize:surfaceSelectionSize,
                     images:images,
+                    documentLocation:documentLocation,
                     document:document,
+                    packingList:packingList,
 
                     labelTableRoll:labelTableRoll,
                     quantityTableRoll:quantityTableRoll,
@@ -400,6 +406,8 @@ const GoodsInspectionSellLeather = (props) => {
                     surfaceSelectionSize:surfaceSelectionSize,
                     images:images,
                     document:document,
+                    documentLocation:documentLocation,
+                    packingList:packingList,
 
                     labelTableRoll:labelTableRoll,
                     quantityTableRoll:quantityTableRoll,

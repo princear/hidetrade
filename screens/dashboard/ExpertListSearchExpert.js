@@ -65,10 +65,10 @@ const ExpertListSearchExpert = (props) => {
   const [dataLoad, setDataLoaded] = useState(false);
   const [apiLoader, setApiLoader] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/SearchExpertOrAgent/SearchExpertOrAgent.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/SearchExpertOrAgent/SearchExpertOrAgent.php`;
       //console.log('inside useEffect array='+JSON.stringify(arr2));
       axios.post(webApirUrl, final).then((res) => {
         setAgentData(res.data.Search_Expert_Details);
@@ -135,7 +135,7 @@ const ExpertListSearchExpert = (props) => {
                           style={{ width: 100, height: 100, marginTop:10, borderRadius:10 }}
                           source={{
                             uri:
-                              "https://refuel.site/projects/hidetrade/UPLOAD_file/" +
+                              "https://www.hidetrade.eu/app/UPLOAD_file/" +
                               item.profile_image,
                           }}
                         />

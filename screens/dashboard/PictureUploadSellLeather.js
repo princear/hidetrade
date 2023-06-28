@@ -9,9 +9,7 @@ import {
   FlatList,ActivityIndicator
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import Icon from "react-native-vector-icons/Ionicons";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Ionicons} from '@expo/vector-icons'
 
 import Colors from "../../constants/Colors";
 import ButtonComp from "../../components/ButtonComp";
@@ -29,7 +27,7 @@ const PictureUploadSellLeather = (props) => {
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1,
+      quality: 0.5,
       base64: true,
     });
 
@@ -43,38 +41,38 @@ const PictureUploadSellLeather = (props) => {
       setImage((value) => [...value, result.uri]);
       setImages((value) => [...value, result.base64]);
       //AsyncStorage.setItem('image',JSON.stringify(image));
-      uploadImage({ uri: result.base64 });
+      // uploadImage({ uri: result.base64 });
     }
   };
 
-  console.log("images base64=" + images);
+  // console.log("images base64=" + images);
 
-  const uploadImage = async (base64String) => {
-    setApiLoader(true);
-    //var image64Param=`data:image/jpg;base64,${base64String.uri}`;
-    var image64Param = `${base64String.uri}`;
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/AddProduct/AddProductMultiImages.php`;
-    let object = [{ product_id: "0" }, { pimage: image64Param }];
-    //console.log("object=" + JSON.stringify(object));
+  // const uploadImage = async (base64String) => {
+  //   setApiLoader(true);
+  //   //var image64Param=`data:image/jpg;base64,${base64String.uri}`;
+  //   var image64Param = `${base64String.uri}`;
+  //   let webApiUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductMultiImages.php`;
+  //   let object = [{ product_id: "0" }, { pimage: image64Param }];
+  //   //console.log("object=" + JSON.stringify(object));
 
-    axios
-      .post(webApiUrl, object)
-      .then((res) => {
-        console.log("response of picture=" + JSON.stringify(res.data));
-        setApiLoader(false);
-      })
-      .catch((err) => console.log(err));
-    setTimeout(() => {
-      setApiLoader(false);
-    }, 5000);
-  };
+  //   axios
+  //     .post(webApiUrl, object)
+  //     .then((res) => {
+  //       console.log("response of picture=" + JSON.stringify(res.data));
+  //       setApiLoader(false);
+  //     })
+  //     .catch((err) => console.log(err));
+  //   setTimeout(() => {
+  //     setApiLoader(false);
+  //   }, 5000);
+  // };
 
   useEffect(() => {
     setApiLoader(true);
     image;
     //setImage(image)
     //AsyncStorage.setItem("image",image);
-    console.log("inside useffect=" + JSON.stringify(image));
+    // console.log("inside useffect=" + JSON.stringify(image));
     setApiLoader(false);
   }, [image, images]);
 
@@ -152,6 +150,7 @@ const PictureUploadSellLeather = (props) => {
   var priceSelection6 = props.route.params.priceSelection6;
   var labelSelectionPrice6 = props.route.params.labelSelectionPrice6;
   var document = props.route.params.document;
+  var packingList=props.route.params.packingList
 
   var base64Icon;
 
@@ -352,12 +351,13 @@ const PictureUploadSellLeather = (props) => {
                     labelSelectionUnit6: labelSelectionUnit6,
                     labelSelectionPrice6: labelSelectionPrice6,
                     priceSelection6: priceSelection6,
-                    images: images,
+                    images:  uri!=undefined && uri.length!=0?uri: images,
                     document: document,
+                    packingList:packingList
                   })
                 }
               >
-                <Icon
+                <Ionicons
                   name="chevron-back-outline"
                   size={30}
                   color={Colors.text}

@@ -27,7 +27,7 @@ const ProductListSearchExpert = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
       axios
         .get(webApirUrl)
         .then((res) => {
@@ -132,7 +132,7 @@ const ProductListSearchExpert = (props) => {
                                     }}
                                     source={{
                                       uri:
-                                        `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                        `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                         item.product_upload_images[0]
                                           .images_name,
                                     }}

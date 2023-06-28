@@ -33,7 +33,7 @@ const ApprovalListFeedback = (props) => {
       setApiLoader(true);
       // setId(AsyncStorage.getItem("user_id"));
       console.log('trial='+JSON.stringify(trial))
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/UsersListWhoSendReviewRatingsPermissions.php?user_id_who_get_request=${id}`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/UsersListWhoSendReviewRatingsPermissions.php?user_id_who_get_request=${id}`;
       axios
         .get(webApiUrl)
         .then((res) => {
@@ -48,7 +48,7 @@ const ApprovalListFeedback = (props) => {
 
   const approvalList=()=>{
     setApiLoader(true)
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/UsersListWhoSendReviewRatingsPermissions.php?user_id_who_get_request=${id}`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/UsersListWhoSendReviewRatingsPermissions.php?user_id_who_get_request=${id}`;
     axios.get(webApiUrl).then((res) => {
         setData(res.data.Users_List_Who_Send_Review_Ratings_Request);
         console.log('data inside axios='+JSON.stringify(res.data))
@@ -61,7 +61,7 @@ const ApprovalListFeedback = (props) => {
   const onPressOk=async(fId)=>{
     console.log('inside on press ok')
     console.log('f id in approval list='+fId)
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
     const data=new FormData();
     data.append('asked_by_rating_review_user1_id',fId)
     data.append('loggedIn_user_id',id)
@@ -90,7 +90,7 @@ const ApprovalListFeedback = (props) => {
   }
 
   const onPressCancel=async(fId)=>{
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
     const data=new FormData();
     data.append('asked_by_rating_review_user1_id',fId)
     data.append('loggedIn_user_id',id)

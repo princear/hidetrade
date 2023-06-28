@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,Image, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -38,7 +37,7 @@ const RawDefectsBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllRawDefectLeathersList/ViewAllRawDefectLeathersList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllRawDefectLeathersList/ViewAllRawDefectLeathersList.php`;
     axios.get(webApiUrl).then((res) => {
       setRawDefects(res.data.Output);
       setApiLoader(false);

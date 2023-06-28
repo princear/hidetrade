@@ -27,10 +27,10 @@ const ProductListBuyLeatherSearchArea = (props) => {
   const [dataLoad, setDataLoaded] = useState(false);
   const [apiLoader, setApiLoader] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/SearchProduct/SearchLotProductByCountryOrContinent.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/SearchProduct/SearchLotProductByCountryOrContinent.php`;
       let object = [
         {
           country: selectedCountry,
@@ -133,7 +133,7 @@ const ProductListBuyLeatherSearchArea = (props) => {
                             <Image
                               source={{
                                 uri:
-                                  `https://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                  `https://www.hidetrade.eu/app/UPLOAD_file/` +
                                   item.product_upload_images[0].images_name,
                               }}
                               style={{ width: 100, height: 85 }}

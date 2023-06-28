@@ -7,14 +7,17 @@ const FeedbackApprovalListFeedback = (props) => {
   const [fId, setFId] = useState(undefined);
   const [ok, setOk]=useState(0)
 
-  useEffect(async() => {
+  const getDetails=async()=>{
     setId(await AsyncStorage.getItem("user_id"));
-    
-  }, [id]);
+  }
+
+  useEffect(() => {
+    getDetails()
+  }, [getDetails]);
 
   const onPressOk=async()=>{
     console.log('inside on press ok')
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
     const data=new FormData();
     data.append('asked_by_rating_review_user1_id','142')
     data.append('loggedIn_user_id',id)
@@ -37,7 +40,7 @@ const FeedbackApprovalListFeedback = (props) => {
   }
 
   const onPressCancel=async()=>{
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsAcceptRequest.php`;
     const data=new FormData();
     data.append('asked_by_rating_review_user1_id','142')
     data.append('loggedIn_user_id',id)

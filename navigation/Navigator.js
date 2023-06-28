@@ -1,22 +1,15 @@
-import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import {
   Image,
   Text,
   View,
-  ImageBackground,
-  TouchableOpacity,Platform
+  Platform
 } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Icon from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
-  getFocusedRouteNameFromRoute,
-  NavigationContainer,
   useIsFocused
 } from "@react-navigation/native";
-
-import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import SplashScreen from "../screens/SplashScreen";
 import Login from "../screens/signup/Login";
@@ -25,7 +18,6 @@ import Home from "../screens/dashboard/Home";
 import RegisterAs from "../screens/signup/RegisterAs";
 import Signup from "../screens/signup/Signup";
 import Buy from "../screens/dashboard/Buy";
-import Sell from "../screens/dashboard/Sell";
 import Feedback from "../screens/dashboard/Feedback";
 import Profile from "../screens/dashboard/Profile";
 import ForgotPassword from "../screens/signup/ForgotPassword";
@@ -71,7 +63,6 @@ import HairLeatherBuyLeatherSearchProduct from "../screens/dashboard/HairLeather
 import CertificateLeatherBuyLeatherSearchProduct from "../screens/dashboard/CertificateLeatherBuyLeatherSearchProduct";
 import CountryAndCitySearchBuyLeatherSearchProduct from "../screens/dashboard/CountryAndCitySearchBuyLeatherSearchProduct";
 import ProductListBuyLeatherSearchProduct from "../screens/dashboard/ProductListBuyLeatherSearchProduct";
-import DrawerTestScreen from "../screens/dashboard/DrawerTestScreen";
 import DocumentUploadSellLeather from "../screens/dashboard/DocumentUploadSellLeather";
 import ExpertListSearchExpert from "../screens/dashboard/ExpertListSearchExpert";
 import IndividualProductSearchTanneriesBuyLeather from "../screens/dashboard/IndividualProductSearchTanneriesBuyLeather";
@@ -96,14 +87,18 @@ import DocsCertificateBuyLeatherSearchProduct from "../screens/dashboard/DocsCer
 import DocsCertificateBuyLeatherSearchArea from "../screens/dashboard/DocsCertificateBuyLeatherSearchArea";
 import TanneriesListFeedback from "../screens/dashboard/TanneriesListFeedback";
 import TanneriesProfileFeedback from "../screens/dashboard/TanneriesProfileFeedback";
-import FeedbackApprovalListFeedback from "../screens/dashboard/FeedbackApprovalListFeedback";
 import ApprovalListFeedback from "../screens/dashboard/ApprovalListFeedback";
 import ListFeedback from "../screens/dashboard/ListFeedback";
 import AgentsListFeedback from "../screens/dashboard/AgentsListFeedback";
 import AgentsProfileFeedback from "../screens/dashboard/AgentsProfileFeedback";
 import TanningInProfile from "../screens/dashboard/TanningInProfile";
 import SizeInProfile from "../screens/dashboard/SizeInProfile";
+import PreviewDocsCertificatesSellLeather from "../screens/dashboard/PreviewDocsCertificatesSellLeather";
+import PreviewPackingListSellLeather from "../screens/dashboard/PreviewPackingListSellLeather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CheckoutScreen from "../screens/paymentScreens/checkout";
+import Subscription from "../screens/dashboard/Subscription";
+import MyStripeCheckout from "../screens/paymentScreens/changeCard";
 
 
 const HomeTabNavigator = createBottomTabNavigator();
@@ -113,7 +108,6 @@ const HomeScreenNavigator = createNativeStackNavigator();
 const BuyTab = createNativeStackNavigator();
 const ProfileTab = createNativeStackNavigator();
 const FeedbackTab=createNativeStackNavigator();
-const DrawerTab = createDrawerNavigator();
 
 
 export const ProfileTabScreens = () => {
@@ -193,6 +187,30 @@ export const ProfileTabScreens = () => {
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
         }}
+      />
+
+      <ProfileTab.Screen
+        name="Subscription"
+        component={Subscription}
+        options={({ navigation }) => ({
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.headerBackground },
+          headerTintColor: "white",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerBackVisible:false
+        })}
+      />
+
+      <ProfileTab.Screen
+        name="Change Card"
+        component={MyStripeCheckout}
+        options={({ navigation }) => ({
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.headerBackground },
+          headerTintColor: "white",
+          headerTitleStyle: { fontWeight: "bold" },
+          headerBackVisible:false
+        })}
       />
      
     </ProfileTab.Navigator>
@@ -996,7 +1014,33 @@ export const SellTabScreens = () => {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />
-    </SellTab.Navigator>
+      <SellTab.Screen
+        name="PreviewDocsCertificatesSellLeather"
+        component={PreviewDocsCertificatesSellLeather}
+        options={{
+          //headerBackVisible: false,
+          headerBackTitle: "",
+          headerTitle: "Docs/Certificates",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.headerBackground },
+          headerTintColor: "white",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
+      <SellTab.Screen
+        name="PreviewPackingListSellLeather"
+        component={PreviewPackingListSellLeather}
+        options={{
+          headerBackVisible: false,
+          headerBackTitle: "",
+          headerTitle: "Packing List",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.headerBackground },
+          headerTintColor: "white",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
+    </SellTab.Navigator>  
   );
 };
 
@@ -1144,7 +1188,7 @@ const [userType,setUserType] = useState()
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: Colors.headerBackground },
             headerTintColor: "white",
-            headerTitleStyle: { fontWeight: "bold" }
+            headerTitleStyle: { fontWeight: "bold" },
           })}
         />
        
@@ -1292,6 +1336,15 @@ export const StackNavigator = () => {
           headerStyle: { backgroundColor: Colors.status },
         }}
       />
+      <Stack.Screen 
+        name="CheckoutScreen"
+        component={CheckoutScreen}
+        options={{
+          animation : "slide_from_right",
+          headerShown : false,
+          headerStyle : { backgroundColor: Colors.status },
+        }}
+      />  
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}

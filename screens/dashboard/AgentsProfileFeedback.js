@@ -9,7 +9,6 @@ import {
   Image,
   Alert,ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import { TextInput } from "react-native-paper";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -44,7 +43,7 @@ const AgentsProfileFeedback = (props) => {
     if (dataLoad == false) {
       
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Agents`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/SearchTanneries/SearchTanneries.php?first_name=${first_name}&user_type=Agents`;
       console.log("webapiurl=" + webApiUrl);
       axios.get(webApiUrl).then(async (res) => {
         console.log("abc");
@@ -54,7 +53,7 @@ const AgentsProfileFeedback = (props) => {
         console.log("response of profile=" + JSON.stringify(res.data));
         setProfile(res.data.User_Details);
 
-        let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+        let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
         const data = new FormData();
         data.append("user_id_who_got_ratings", fId);
         let responseFeedback = await fetch(webapiurl, {
@@ -75,7 +74,7 @@ const AgentsProfileFeedback = (props) => {
 
         // new edit 
 
-        let webapi = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
+        let webapi = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
         console.log('id='+id+"fid="+fId)
         const dataAcceptOrReject = new FormData();
         dataAcceptOrReject.append("asked_by_rating_review_user1_id", id);
@@ -118,7 +117,7 @@ const AgentsProfileFeedback = (props) => {
   const Feedback = async () => {
     console.log("inside feedback button");
     console.log("id=" + id + " fId=" + fId);
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
     const data = new FormData();
     data.append("asked_by_rating_review_user1_id", id);
     data.append("to_rating_review_user2_id", fId);
@@ -133,7 +132,7 @@ const AgentsProfileFeedback = (props) => {
     let responseJSON = await res.json();
     console.log('response in feedback after button press'+JSON.stringify(responseJSON));
 
-    let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
+    let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
     const dataAcceptOrReject = new FormData();
     dataAcceptOrReject.append("asked_by_rating_review_user1_id", id);
     dataAcceptOrReject.append("user_id_who_will_get_ratings", fId);
@@ -172,7 +171,7 @@ const AgentsProfileFeedback = (props) => {
   const onFeedbackEnter = async () => {
     if (feedbackText != "") {
       console.log("text feedback=" + feedbackText);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
       const data = new FormData();
       data.append("logged_in_user_id", id);
       data.append("user_id_who_will_get_ratings", fId);
@@ -195,7 +194,7 @@ const AgentsProfileFeedback = (props) => {
       if (responseJSON.Status == true) {
         Alert.alert("", responseJSON.Message);
          
-          let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+          let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
           const data = new FormData();
           data.append("user_id_who_got_ratings", fId);
           let responseFeedback = await fetch(webapiurl, {
@@ -271,7 +270,7 @@ const AgentsProfileFeedback = (props) => {
                       <Image
                         source={{
                           uri:
-                            `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                            `http://www.hidetrade.eu/app/UPLOAD_file/` +
                             profile[0].profile_image,
                         }}
                         resizeMode="contain"

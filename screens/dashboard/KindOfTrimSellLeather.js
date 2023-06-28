@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,Image, ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -113,7 +112,7 @@ const KindOfTrimSellLeather = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTrimLeatherList/ViewAllKindOfTrimLeatherList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllKindOfTrimLeatherList/ViewAllKindOfTrimLeatherList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log(
           "response in substance and thickness=" + JSON.stringify(res.data)

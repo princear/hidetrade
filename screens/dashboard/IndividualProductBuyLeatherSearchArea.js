@@ -31,7 +31,7 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
     if (dataLoad == false) {
       setApiLoader(true);
       
-      let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ProductDataAPI/singleProductsFullDetailsLot.php?product_id=${product_id}`;
+      let webapiurl = `https://www.hidetrade.eu/app/APIs/ProductDataAPI/singleProductsFullDetailsLot.php?product_id=${product_id}`;
 
       axios.get(webapiurl).then((res) => {
         console.log("product response=" + JSON.stringify(res.data));
@@ -220,7 +220,7 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
                           style={{ width: 120, height: 120, borderRadius: 8 }}
                           source={{
                             uri:
-                              `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                              `http://www.hidetrade.eu/app/UPLOAD_file/` +
                               value.product_upload_images[0].images_name,
                           }}
                         />
@@ -276,7 +276,8 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
                 </View>
 
                 <View>
-                  <TouchableOpacity>
+                  {product?.map((value)=>(
+                      <TouchableOpacity>
                     {/* <Image
                       source={require("../../assets/IconDocuments.png")}
                       style={{
@@ -289,9 +290,13 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
                     /> */}<Image
                     style={{ width: 80, height: 80, marginTop:10, alignSelf:'center' }}
                     source={require("../../assets/ByClient/IconPakinglist.png")} resizeMode='contain'
-                  />
-                    <Text allowFontScaling={false} style={{textAlign:'center'}}>Paking List</Text>
+                   />
+                    {/* <Text allowFontScaling={false} style={{textAlign:'center'}}>Paking List</Text> */}
+                    <Text allowFontScaling={false} style={{ }}>Packing :{" "}<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{value.product_Packaging_data?.map((values)=>(<Text>{values.pakingArrange}</Text>))}</Text></Text>
                   </TouchableOpacity>
+                    
+                  ))}
+                 
                 </View>
               </ScrollView>
 
@@ -330,7 +335,8 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
                 }}
                 horizontal={true}
               >
-                <View>
+               <View>
+                {product?.map((value) => (
                   <TouchableOpacity>
                   <Image
                       source={require("../../assets/IconDocuments.png")}
@@ -342,8 +348,9 @@ const IndividualProductBuyLeatherSearchArea = (props) => {
                       }}
                       resizeMode="contain"
                     />
-                    <Text allowFontScaling={false} style={{textAlign:'center'}}>Where?</Text>
+                    <Text allowFontScaling={false} style={{textAlign:'center'}}>where : {value.where_are_leathers_comp_address ? value.where_are_leathers_comp_address :value.where_are_leathers_other_address}</Text>
                   </TouchableOpacity>
+                ))}
                 </View>
 
                 <View style={{ justifyContent: "flex-end" }}>

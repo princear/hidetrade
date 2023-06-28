@@ -8,7 +8,6 @@ import {
   TouchableOpacity,Image
 } from "react-native";
 import axios from "axios";
-import Icon from "react-native-vector-icons/Ionicons";
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -63,7 +62,7 @@ const KindOfPreservationBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true)
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllPreservationList/ViewAllPreservationList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllPreservationList/ViewAllPreservationList.php`;
     axios
       .get(webApiUrl)
       .then((res) => {

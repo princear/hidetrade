@@ -8,7 +8,6 @@ import {
   FlatList,
   StyleSheet,ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -47,7 +46,7 @@ const KindOfShapeBuyLeatherSearchProduct = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              `http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherShapeList/` +
+              `http://www.hidetrade.eu/app/APIs/ViewAllLeatherShapeList/` +
               image_name,
           }}
         />
@@ -60,7 +59,7 @@ const KindOfShapeBuyLeatherSearchProduct = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllLeatherShapeList/ViewAllLeatherShapeList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllLeatherShapeList/ViewAllLeatherShapeList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log("response in category=" + JSON.stringify(res.data));
         setCategory(res.data);

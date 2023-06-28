@@ -10,7 +10,6 @@ import {
   useWindowDimensions,
   Alert,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -50,7 +49,7 @@ const SubCategoryInProfile = (props) => {
   // console.log('final after concat='+JSON.stringify(finalsFinal))
 
   // const editProfile = useCallback(async () => {
-  //   let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/UpdateProfile/UpdateProfile.php`;
+  //   let webApirUrl = `https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
   //   axios.post(webApirUrl, finalsFinal).then((res) => {
   //     console.log("updated? =" + JSON.stringify(res.data));
   //     Alert.alert("", res.data.message, [{ text: "Ok", style: "cancel" }]);
@@ -86,7 +85,7 @@ const SubCategoryInProfile = (props) => {
           ]}
           source={{
             uri:
-              "https://refuel.site/projects/hidetrade/UPLOAD_file/" +
+              "https://www.hidetrade.eu/app/UPLOAD_file/" +
               image_name,
           }}
         />
@@ -97,7 +96,7 @@ const SubCategoryInProfile = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/SubcategoryDataAPI/RestController.php?view=all`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/SubcategoryDataAPI/RestController.php?view=all`;
       axios.get(webApiUrl).then((res) => {
         setSubCategory(res.data);
         setApiLoader(false);

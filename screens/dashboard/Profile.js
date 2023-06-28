@@ -5,9 +5,9 @@ import {
   ScrollView,
   Alert,
   TouchableOpacity,
-  Image, KeyboardAvoidingView, Platform,Modal,
+  Image, KeyboardAvoidingView, Platform,Modal, ToastAndroid,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import {Ionicons} from '@expo/vector-icons'
 import { TextInput } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -42,6 +42,7 @@ const Profile = (props) => {
   const [http, setHttp] = useState("");
   const [image, setImage] = useState("");
   const [selectedImage, setSelectedImage] = useState("");
+  const subId = props.route.params.subId;
 
   const getDetails=async()=>{
     setId(await  AsyncStorage.getItem("user_id"));
@@ -56,7 +57,7 @@ const Profile = (props) => {
       console.log("id in profile=" + id);
       console.log("user type in profile=" + user_type);
       if (user_type != undefined && id != undefined) {
-        let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
+        let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
         console.log("webapiurl=" + webApirUrl);
         axios
           .get(webApirUrl)
@@ -128,7 +129,7 @@ const Profile = (props) => {
 
   const editProfile=async()=>{
     setApiLoader(true);
-    let webApirUrl=`https://refuel.site/projects/hidetrade/APIs/UpdateProfile/UpdateProfile.php`;
+    let webApirUrl=`https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
     axios.post(webApirUrl, final).then((response)=>{
       console.log('response in edit profile='+JSON.stringify(response.data))
       setApiLoader(false);
@@ -136,8 +137,86 @@ const Profile = (props) => {
     }).catch((err)=>console.log('error='+JSON.stringify(err)))
   }
 
-  const onUnSubscribe = () =>{
-    alert("Are You Sure You Want To UnSubscribe")
+  const onDeleteAccount = async () => {
+    Alert.alert("Confirmation", "Are You Sure Want To Delete Your Account ?", [{
+      text : "Yes", onPress : async () => {
+        if (type.user_type === "Tanneries" && Platform.OS === "android") {
+          setApiLoader(true);
+          const subsciptionCancelled = await turnOffNextMonthSubscription();
+          if (subsciptionCancelled) {
+            ToastAndroid.show("Next Month Subscription Cancelled", ToastAndroid.LONG);
+            // call delete api
+            const isDeleted = await deleteUser();
+            if (isDeleted) {
+              await AsyncStorage.removeItem("LoginStatus")
+              await AsyncStorage.removeItem("user_id")
+              await AsyncStorage.removeItem("user_type");
+              setApiLoader(false);
+              ToastAndroid.show("Your Account Deleted", ToastAndroid.LONG);
+              props.navigation.navigate("Login");
+            } else {
+              setApiLoader(false);
+              ToastAndroid.show("Can't Delete Account, Try In Some Time", ToastAndroid.LONG);
+            }
+          } else {
+            setApiLoader(false);
+            ToastAndroid.show("Can't Delete Account, Try In Some Time", ToastAndroid.LONG);
+          }
+        } else {
+          // call delete api
+          setApiLoader(true);
+          const isDeleted = await deleteUser();
+          if (isDeleted) {
+            await AsyncStorage.removeItem("LoginStatus")
+            await AsyncStorage.removeItem("user_id")
+            await AsyncStorage.removeItem("user_type");
+            setApiLoader(false);
+            if (Platform.OS === "android")
+              ToastAndroid.show("Your Account Deleted", ToastAndroid.LONG);
+            props.navigation.navigate("Login");
+          } else {
+            setApiLoader(false);
+            if (Platform.OS === "android")
+              ToastAndroid.show("Your Account Deleted", ToastAndroid.LONG);
+          }
+        }
+      }
+    }, {
+      text : "No", onPress : () => {
+
+      }
+    }]);
+  }
+
+  const turnOffNextMonthSubscription = async () => {
+    let apiUrl = "https://hide-trade.onrender.com";
+    const result = await axios.post(apiUrl + "/cancel-subscription-update", { subId : subId, status : true });
+    console.log(result.data);
+    console.log(result.status);
+    return (result.status === 200);
+  }
+
+  const deleteUser = async () => {
+    let apiUrl = "https://www.hidetrade.eu/app/APIs/DeleteSingleUser/DeleteSingleUser.php";
+
+    console.log(user_id.user_id);
+
+    let arr = new FormData();
+    arr.append('user_id', user_id.user_id);
+
+    console.log(arr);
+
+    const result = await axios.post(apiUrl,arr, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      transformRequest: (data, headers) => {
+        return arr;
+      },
+    });
+
+    console.log(result.data);
+    return result.data.status;
   }
 
   // Edit profile ends 
@@ -187,7 +266,7 @@ const Profile = (props) => {
                     image.lastIndexOf("png") > -1 ? (
                       <Image
                         source={{
-                          uri:selectedImage!=""?selectedImage: image.lastIndexOf("jpeg") > -1 || image.lastIndexOf("jpg") > -1 || image.lastIndexOf("png") > -1 ?(`https://refuel.site/projects/hidetrade/UPLOAD_file/`+image):selectedImage
+                          uri:selectedImage!=""?selectedImage: image.lastIndexOf("jpeg") > -1 || image.lastIndexOf("jpg") > -1 || image.lastIndexOf("png") > -1 ?(`https://www.hidetrade.eu/app/UPLOAD_file/`+image):selectedImage
                         }}
                         style={{ width: 120, height: 120, borderRadius: 20 }} 
                       />
@@ -199,7 +278,7 @@ const Profile = (props) => {
                 ) :selectedImage!=""?(<Image source={{uri:selectedImage}} style={{ width: 120, height: 120, borderRadius: 20 }}/>): 
                 (
                   <View>
-                    <Icon name="person-circle-outline" size={100} />
+                    <Ionicons name="person-circle-outline" size={100} />
                   </View>
                 )}
               </TouchableOpacity>
@@ -359,8 +438,11 @@ const Profile = (props) => {
                 <View><ButtonForProfile title={"Update"} onPress={editProfile} /></View>
                 <View><ButtonForLogout title={"Logout"} onPress={doLogout} /></View>
             </View>
-            <View style={{alignSelf:'center'}}><ButtonForProfile title={"UnSubscribe"} onPress = {onUnSubscribe} /></View>
-
+            <View style={{ 
+              marginBottom: Platform.OS=='ios'?20:10,
+             flexDirection:'row', justifyContent:'space-evenly' }}>
+                <View><ButtonForProfile title={"Delete Account"} onPress={onDeleteAccount} /></View>
+            </View>
 
           </View>
         </ScrollView>

@@ -75,7 +75,7 @@ const ForgotPassword = (props) => {
   // };
 
   const submitHandler = useCallback(async () => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/api/User/resetpassword.php?email=${email}`;
+    let webApirUrl = `https://www.hidetrade.eu/app/api/User/resetpassword.php?email=${email}`;
     axios.get(webApirUrl).then((res) => {
       console.log("response in forgot password=" + JSON.stringify(res.data));
       if (res.data.status == true) {

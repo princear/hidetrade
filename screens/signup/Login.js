@@ -18,7 +18,6 @@ import Constants from "expo-constants";
 import { Dropdown } from "react-native-element-dropdown";
 import { TextInput } from "react-native-paper";
 import CheckBox from "expo-checkbox";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SpinView from "../../components/Spin";
@@ -26,6 +25,7 @@ import { StackActions } from '@react-navigation/native';
 
 import Colors from "../../constants/Colors";
 import ButtonComp from "../../components/ButtonComp";
+import { useRevenueCat } from "../../customHook/useRevenueCat";
 
 // const data = [
 //   // { label: "Admin", value: "1" },
@@ -92,7 +92,7 @@ const Login = (props) => {
 
   const loginHandler = useCallback(async() => {
     setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/api/User/login.php?user_type=${label == "Tannery" ? "Tanneries" : "Agents"}&email=${email}&password=${password}`;
+      let webApiUrl = `https://www.hidetrade.eu/app/api/User/login.php?user_type=${label == "Tannery" ? "Tanneries" : "Agents"}&email=${email}&password=${password}`;
       console.log("webapiurl=" + webApiUrl);
       axios.get(webApiUrl).then(async(res) => {
           console.log("response in login=" + JSON.stringify(res.data));
@@ -101,26 +101,62 @@ const Login = (props) => {
             await AsyncStorage.setItem("user_id", res.data.User_Details.user_id);
             await AsyncStorage.setItem("user_type", res.data.User_Details.user_type);
 
-              props.navigation.dispatch(StackActions.replace('Tabs'))
+            console.log(res.data.User_Details)
+
+            let flag = false;
+
+            if (label === "Tannery") {
+              if (Platform.OS === "android") {
+                const timestamp = res.data.User_Details.timestamp+"";
+
+                if (timestamp === "" || timestamp.length == 0 || isNaN(Number(timestamp))) {
+                  flag = true;
+                } else {
+                  const date_exp = new Date(Number(timestamp)*1000);
+                  console.log("Exp : " + date_exp);
+                  if (date_exp < new Date()) {
+                    flag = true;
+                  }
+                }
+              } else {
+                const response = await useRevenueCat()
+                const customerInfo = response.ci
+                const isSubscribed = customerInfo.activeSubscriptions.includes("tannery")
+  
+                if (!isSubscribed) {
+                  flag = true;
+                }
+              }
+            }  
             
-            // props.navigation.navigate("Tabs");
-            // props.navigation.navigate("Home")
-            setEmail('');
-            setPassword('');
-            setApiLoader(false);
+            if (flag) {
+              const Data = {
+                email : res.data.User_Details.email,
+                name : res.data.User_Details.user_id
+              }
+              setEmail('');
+              setPassword('');
+              setApiLoader(false);
+              props.navigation.navigate("CheckoutScreen", { Data : Data });
+            } else {
+              setEmail('');
+              setPassword('');
+              setApiLoader(false);
+              props.navigation.dispatch(StackActions.replace('Tabs'));
+            }
           }else if(res.data.status==false) {
             Alert.alert("", res.data.message);
-            // setPassword('');
             setApiLoader(false);
           } 
           else {
             Alert.alert("", "Kindly recheck the fields");
-            // setPassword('');
             setApiLoader(false);
           }
         })
         .catch((err) => {
           console.log('error==',err);
+          setApiLoader(false);
+          Alert.alert("Bad Internet Connection", "Kindly Check Your Internet Connection or try after some time");
         });
   }, [value, email, password]);
 

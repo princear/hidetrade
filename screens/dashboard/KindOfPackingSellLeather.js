@@ -8,7 +8,6 @@ import {
   FlatList,
   Image,ActivityIndicator
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -122,7 +121,7 @@ const KindOfPackingSellLeather = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              "https://refuel.site/projects/hidetrade/APIs/ViewAllPackagingArrangeList/" +
+              "https://www.hidetrade.eu/app/APIs/ViewAllPackagingArrangeList/" +
               image_name,
           }}
         />
@@ -133,7 +132,7 @@ const KindOfPackingSellLeather = (props) => {
   useEffect(() => {
     if(dataLoad==false){
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllPackagingArrangeList/ViewAllPackagingArrangeList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllPackagingArrangeList/ViewAllPackagingArrangeList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log("response in new screen=" + JSON.stringify(res.data));
         setKindOfPacking(res.data);
@@ -207,7 +206,7 @@ const KindOfPackingSellLeather = (props) => {
                 //       style={{ width: 100, height: 100 }}
                 //       source={{
                 //         uri:
-                //           "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+                //           "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
                 //           item.image_name,
                 //       }}
                 //     />

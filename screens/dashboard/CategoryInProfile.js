@@ -8,7 +8,6 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -32,7 +31,7 @@ const CategoryInProfile = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/ViewAllLeatherConditionList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/ViewAllLeatherConditionList.php`;
       axios.get(webApiUrl).then((res) => {
         setLeatherCondition(res.data);
         setDataloaded(true);
@@ -72,7 +71,7 @@ const CategoryInProfile = (props) => {
           ]}
           source={{
             uri:
-              "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+              "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
               image_name,
           }}
         />

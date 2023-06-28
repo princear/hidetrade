@@ -10,7 +10,6 @@ import {
   Alert,
   ActivityIndicator,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -46,7 +45,7 @@ const CategorySellLeather = (props) => {
           style={[ {width: 108, height: 108}, isSelected && {width:108, height:108}  ]}
           source={{
             uri:
-              `http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherShapeList/` +
+              `http://www.hidetrade.eu/app/APIs/ViewAllLeatherShapeList/` +
               image_name,
           }}
         />
@@ -57,7 +56,7 @@ const CategorySellLeather = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllLeatherShapeList/ViewAllLeatherShapeList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllLeatherShapeList/ViewAllLeatherShapeList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log("response in category=" + JSON.stringify(res.data));
         setCategory(res.data);
@@ -67,8 +66,8 @@ const CategorySellLeather = (props) => {
     }
   }, []);
 
-  // useEffect(async () => {
-  //   let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllCategory/ViewAllCategory.php`;
+  // useEffect(() => {
+  //   let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCategory/ViewAllCategory.php`;
   //   axios
   //     .get(webApiUrl)
   //     .then((res) => {
@@ -135,7 +134,7 @@ const CategorySellLeather = (props) => {
                       //       style={{ width: 100, height: 100 }}
                       //       source={{
                       //         uri:
-                      //           "http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/" +
+                      //           "http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/" +
                       //           item.image_name,
                       //       }}
                       //     />

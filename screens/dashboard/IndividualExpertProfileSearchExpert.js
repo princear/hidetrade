@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import axios from "axios";
 
-import Icon from 'react-native-vector-icons/Ionicons'
 import StarRating from "react-native-star-rating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TextInput } from "react-native-paper";
@@ -44,14 +43,14 @@ const IndividualExpertProfileSearchExpert = (props) => {
     if (dataLoad == false) {
       getDetails()
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
       axios
         .get(webApirUrl)
         .then(async(res) => {
           console.log('response in expert profile='+JSON.stringify(res.data.User_Details))
           setExpertProfile(res.data.User_Details);
 
-          let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+          let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
           const data = new FormData();
           data.append("user_id_who_got_ratings", user_id);
           let responseFeedback = await fetch(webapiurl, {
@@ -80,7 +79,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
   const Feedback = async () => {
     console.log("inside feedback button");
     console.log("id=" + id + " fId=" + user_id);
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SendPermissionRequestReviewsRatings.php`;
     const data = new FormData();
     data.append("asked_by_rating_review_user1_id", id);
     data.append("to_rating_review_user2_id", user_id);
@@ -95,7 +94,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
     let responseJSON = await res.json();
     console.log('response in feedback after button press'+JSON.stringify(responseJSON));
 
-    let webapiurl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
+    let webapiurl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/CheckAcceptedRejectedRatingsFeedbackRequests.php`;
     const dataAcceptOrReject = new FormData();
     dataAcceptOrReject.append("asked_by_rating_review_user1_id", id);
     dataAcceptOrReject.append("user_id_who_will_get_ratings", user_id);
@@ -135,7 +134,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
   const onFeedbackEnter = async () => {
     if (feedbackText != "") {
       console.log("text feedback=" + feedbackText);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ReviewsRatings/SubmitFeedbackOrRatingsReviews.php`;
       const data = new FormData();
       data.append("logged_in_user_id", id);
       data.append("user_id_who_will_get_ratings", user_id);
@@ -158,9 +157,9 @@ const IndividualExpertProfileSearchExpert = (props) => {
       if (responseJSON.Status == true) {
         Alert.alert("", responseJSON.Message,[{text:'Ok', style:'cancel', onPress:()=>{
           setApiLoader(true)
-          let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
+          let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=Agents&user_id=${user_id}`;
           axios.get(webApirUrl).then(async(res)=>{
-            let webapiurl=`https://refuel.site/projects/hidetrade/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
+            let webapiurl=`https://www.hidetrade.eu/app/APIs/ReviewsRatings/RatingsReviewsListUserWhoGot.php`;
             const data = new FormData();
             data.append("user_id_who_got_ratings", user_id);
             let responseFeedback = await fetch(webapiurl, {
@@ -252,7 +251,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                       <Image
                         source={{
                           uri:
-                            `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                            `http://www.hidetrade.eu/app/UPLOAD_file/` +
                             value.profile_image,
                         }}
                         resizeMode="cover"
@@ -410,7 +409,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                                     flex: 1,
                                     marginTop: 10,
                                   }}
-                                ><Image source={{uri:`http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}}/>
+                                ><Image source={{uri:`http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}}/>
                                   {/* <Text allowFontScaling={false}>{item.Leather_Condition}</Text> */}
                                 </View>
                               )}
@@ -431,7 +430,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                                     flex: 1,
                                     marginTop: 10,
                                   }}
-                                ><Image source={{uri:`https://refuel.site/projects/hidetrade/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
+                                ><Image source={{uri:`https://www.hidetrade.eu/app/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
                                 </View>
                               )}
                             />
@@ -452,7 +451,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                                     marginTop: 10,
                                   }}
                                 >
-                                  <Image source={{uri:`http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/`+item.Tanning_leathers_image}} style={{width:80, height:80}} />
+                                  <Image source={{uri:`http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/`+item.Tanning_leathers_image}} style={{width:80, height:80}} />
                                 </View>
                               )}
                             />
@@ -503,7 +502,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                                     flex: 1,
                                     marginTop: 10,
                                   }}
-                                ><Image source={{uri:`http://refuel.site/projects/hidetrade/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}}/>
+                                ><Image source={{uri:`http://www.hidetrade.eu/app/APIs/ViewAllLeatherConditionList/`+item.Leather_Condition_image}} style={{width:80, height:80}}/>
                                 </View>
                               )}
                             />
@@ -527,7 +526,7 @@ const IndividualExpertProfileSearchExpert = (props) => {
                                     flex: 1,
                                     marginTop: 10,
                                   }}
-                                ><Image source={{uri:`https://refuel.site/projects/hidetrade/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
+                                ><Image source={{uri:`https://www.hidetrade.eu/app/UPLOAD_file/`+item.kind_of_leather_on_sell_image}} style={{width:80, height:80}} />
                                 </View>
                               )}
                             />

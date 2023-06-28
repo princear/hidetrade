@@ -9,9 +9,7 @@ import {
   Image,
   ActivityIndicator, KeyboardAvoidingView, Platform
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
-import { Picker } from "@react-native-picker/picker";
 import { Button, Menu, Divider, Provider, TextInput } from "react-native-paper";
 import Checkbox from "expo-checkbox";
 import { Dropdown } from "react-native-element-dropdown";
@@ -55,7 +53,7 @@ const TanningLeatherOriginSellLeather = (props) => {
 
   const populateCountryOrOrigin = (continent) => {
     // setApiLoader(true);
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent.name}`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent.name}`;
 
     axios.get(webApirUrl).then((res) => {
       setCountryDropDown(res.data.Country_List);
@@ -79,7 +77,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   useEffect( () => {
     if (dataLoad == false) {
       setApiLoader(true)
-      let webApirUrl = 'https://refuel.site/projects/hidetrade/APIs/ViewAllContinents/ViewAllContinents.php'
+      let webApirUrl = 'https://www.hidetrade.eu/app/APIs/ViewAllContinents/ViewAllContinents.php'
       axios.get(webApirUrl).then((res) => {
         console.log("🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 88 ~ axios.get ~ res", res.data)
         setContinentDropDown(res.data.Continents_List);
@@ -117,7 +115,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [weightDropDown, setWeightDropDown] = useState(undefined);
 
   useEffect(() => {
-    let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllMeasurementUnits/ViewAllMeasurementUnits.php`;
+    let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllMeasurementUnits/ViewAllMeasurementUnits.php`;
     axios.get(webApiUrl).then((res) => {
       console.log("response for weight=" + JSON.stringify(res.data));
       setWeightDropDown(res.data.measurement_units);
@@ -178,7 +176,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [surfaceDropDown, setSurfaceDropDown] = useState(undefined);
 
   useEffect(() => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSurfaceMeasurementUnits/ViewAllSurfaceMeasurementUnits.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSurfaceMeasurementUnits/ViewAllSurfaceMeasurementUnits.php`;
     axios.get(webApirUrl).then((res) => {
       setSurfaceDropDown(res.data.surface_measurement_units);
     });
@@ -236,7 +234,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [priceDropDown, setPriceDropDown] = useState(undefined);
 
   useEffect(() => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSelectionMeasurementUnits/ViewAllSelectionMeasurementUnits.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionMeasurementUnits/ViewAllSelectionMeasurementUnits.php`;
     axios.get(webApirUrl).then((res) => {
       console.log(
         "table roll down=" +
@@ -251,7 +249,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [isFocusTableRoll, setIsFocusTableRoll] = useState(false);
 
   useEffect(() => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSelectionPriceMeasurementUnits/ViewAllSelectionPriceMeasurementUnits.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionPriceMeasurementUnits/ViewAllSelectionPriceMeasurementUnits.php`;
     axios.get(webApirUrl).then((res) => {
       console.log(
         "response in price=" +
@@ -294,7 +292,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   
 
   useEffect(() => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSelectionMeasurementUnits/ViewAllSelectionMeasurementUnits.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionMeasurementUnits/ViewAllSelectionMeasurementUnits.php`;
     axios.get(webApirUrl).then((res) => {
       console.log(
         "selection of dropdown=" +
@@ -319,7 +317,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [isFocusSelectionUnit, setIsFocusSelectionUnit] = useState(false);
 
   useEffect(() => {
-    let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllSelectionTypeList/ViewAllSelectionTypeList.php`;
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionTypeList/ViewAllSelectionTypeList.php`;
     axios.get(webApirUrl).then((res) => {
       console.log("selection response=" + JSON.stringify(res.data));
       setSelectionDropDown(res.data.Output);
@@ -755,7 +753,7 @@ const TanningLeatherOriginSellLeather = (props) => {
                       styles.dropdownWeight,
                       isFocusWeight && { borderColor: "black" },
                     ]}
-                    containerStyle={{ height: 30 }}
+                    // containerStyle={{ height: 30 }}
                     placeholderStyle={{ fontSize: 16 }}
                     selectedTextStyle={styles.selectedTextStyle}
                     iconStyle={styles.iconStyle}
@@ -1840,6 +1838,8 @@ const TanningLeatherOriginSellLeather = (props) => {
 
 
                   });
+                    console.log("🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 1843 ~ //onChangeText ~ Specification", Specification)
+                   
                 } else if (
                   leatherCondition == "Pickled" ||
                   leatherCondition == "Tanned"

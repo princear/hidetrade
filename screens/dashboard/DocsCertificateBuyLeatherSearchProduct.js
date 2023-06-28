@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import {Ionicons} from '@expo/vector-icons'
 
 const DocsCertificateBuyLeatherSearchProduct = (props) => {
   var product = props.route.params.product;
@@ -29,7 +29,7 @@ const DocsCertificateBuyLeatherSearchProduct = (props) => {
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      var url = `http://refuel.site/projects/hidetrade/UPLOAD_file/${abc.upload_document_name}`;
+                      var url = `http://www.hidetrade.eu/app/UPLOAD_file/${abc.upload_document_name}`;
                       Linking.canOpenURL(url).then((supported) => {
                         if (supported) {
                           Linking.openURL(url);
@@ -40,9 +40,9 @@ const DocsCertificateBuyLeatherSearchProduct = (props) => {
                     }}
                     style={{ flexDirection: "row" }}
                   >
-                    <Icon name="document-outline" size={40} />
+                    <Ionicons name="document-outline" size={40} />
                     <Text allowFontScaling={false} style={{ alignSelf: "center" }}>
-                      {/* http://refuel.site/projects/hidetrade/UPLOAD_file/ */}
+                      {/* http://www.hidetrade.eu/app/UPLOAD_file/ */}
                       {abc.upload_document_name}
                     </Text>
                   </TouchableOpacity>

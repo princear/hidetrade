@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Image,Alert
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 
 import Colors from "../../constants/Colors";
@@ -35,7 +34,7 @@ const TanningInProfile = (props) => {
     console.log('inside edit profile')
     console.log('inside final of tanning profile='+JSON.stringify(finalTanning))
     setApiLoader(true);
-    let webApirUrl=`https://refuel.site/projects/hidetrade/APIs/UpdateProfile/UpdateProfile.php`;
+    let webApirUrl=`https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
     axios.post(webApirUrl, finalTanning).then((response)=>{
         console.log('response in tanning profile='+JSON.stringify(response.data))
         setApiLoader(false);
@@ -68,7 +67,7 @@ const TanningInProfile = (props) => {
           ]}
           source={{
             uri:
-              "http://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
+              "http://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/" +
               image_name,
           }}
         />
@@ -79,7 +78,7 @@ const TanningInProfile = (props) => {
   useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApiUrl = `https://refuel.site/projects/hidetrade/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
+      let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewAllKindOfTanningLeatherForBuyList/ViewAllKindOfTanningLeatherForBuyList.php`;
       axios.get(webApiUrl).then((res) => {
         console.log("response in new screen=" + JSON.stringify(res.data));
         setTanningLeather(res.data);

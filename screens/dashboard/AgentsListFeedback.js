@@ -21,10 +21,10 @@ const AgentsListFeedback = (props) => {
   const [dataLoad, setDataLoaded] = useState(false);
   const [apiLoader, setApiLoader] = useState(true);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (dataLoad == false) {
       setApiLoader(true);
-      let webApirUrl = `https://refuel.site/projects/hidetrade/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Agents`;
+      let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewUserTypeList/ViewUserTypeList.php?user_type=Agents`;
       axios
         .get(webApirUrl)
         .then((res) => {
@@ -123,7 +123,7 @@ const AgentsListFeedback = (props) => {
                           <Image
                             source={{
                               uri:
-                                `http://refuel.site/projects/hidetrade/UPLOAD_file/` +
+                                `http://www.hidetrade.eu/app/UPLOAD_file/` +
                                 item.profile_image,
                             }}
                             resizeMode="cover"
