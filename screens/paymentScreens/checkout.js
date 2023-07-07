@@ -1,6 +1,6 @@
 import { initPaymentSheet, presentPaymentSheet } from "@stripe/stripe-react-native";
 import { useEffect, useState } from "react";
-import { View, Text, Alert, Image, Platform, ScrollView } from "react-native";
+import { View, Text, Alert, Image, Platform, ScrollView,TouchableOpacity,Linking } from "react-native";
 import Constants from "expo-constants";
 import {Ionicons} from '@expo/vector-icons'
 import Colors from "../../constants/Colors";
@@ -33,21 +33,21 @@ export default function CheckoutScreen(props) {
       });
 
       const { subscriptionId, clientSecret, customerId } = await response.json();
-  
+
       return {
         subscriptionId,
         clientSecret,
         customerId,
       }
     }
-  
+
     const initializePaymentSheet = async () => {
       const {
         subscriptionId,
         clientSecret,
         customerId,
       } = await fetchPaymentSheetParams();
-  
+
       const { error } = await initPaymentSheet({
         merchantDisplayName: "Hide Trade",
         customerId: customerId,
@@ -56,28 +56,28 @@ export default function CheckoutScreen(props) {
 
       console.log(error)
 
-      setApiLoader(false);    
+      setApiLoader(false);
     };
 
     const openPaymentSheet = async () => {
       if (Platform.OS === "android") {
         const { error } = await presentPaymentSheet();
-    
+
         if (error) {
           Alert.alert(`Error code: ${error.code}`, error.message);
         } else {
-          Alert.alert('Success', 'Your Subscription is Active Now', [{ 
+          Alert.alert('Success', 'Your Subscription is Active Now', [{
             text : "OK", onPress : () => {
               props.navigation.dispatch(StackActions.replace('Tabs'));
             }
           }], {
             cancelable : false
           });
-        } 
+        }
       } else {
         console.log("Offering : ")
         console.log(offering)
-      
+
         if (!offering?.monthly) {
           return;
         }
@@ -101,7 +101,7 @@ export default function CheckoutScreen(props) {
         }
 
         if (purchaserInfo !== null && purchaserInfo.customerInfo.entitlements.active.tannery) {
-          Alert.alert('Success', 'Your Subscription is Active Now', [{ 
+          Alert.alert('Success', 'Your Subscription is Active Now', [{
             text : "OK", onPress : () => {
               props.navigation.dispatch(StackActions.replace('Tabs'));
             }
@@ -127,7 +127,7 @@ export default function CheckoutScreen(props) {
       setOffering(response.offerings)
       setApiLoader(false)
     }
-  
+
     useEffect(() => {
       if (Platform.OS === "android") {
         initializePaymentSheet();
@@ -135,7 +135,7 @@ export default function CheckoutScreen(props) {
         setUpRevenueCat();
       }
     }, []);
-  
+
     return (
       <View
         style={{
@@ -157,7 +157,8 @@ export default function CheckoutScreen(props) {
         </SpinView>):(
           <ScrollView>
           <View>
-            <Ionicons name="chevron-back-outline" size={30} style={{marginTop:25, marginLeft : 10}} onPress={()=>props.navigation.goBack()} />
+                {/* <Ionicons name="chevron-back-outline" size={30} style={{ marginTop: 25, marginLeft: 10 }} onPress={() => props.navigation.goBack()} /> */}
+            <Ionicons name="chevron-back-outline" size={30} style={{marginTop:25, marginLeft : 10}} onPress={()=>props.navigation.navigate('Login')} />
             <View style={{ marginHorizontal : 10}}>
               <View style={{ marginTop : "35%", marginHorizontal : 10 }}>
                 <Text style={{
@@ -182,7 +183,7 @@ export default function CheckoutScreen(props) {
                   To Use This App As Tennary You Need To Pay Monthly Subscription Fee
                 </Text>
                 <Text
-                  style = {{ 
+                  style = {{
                     marginTop : 30,
                     marginBottom : 70,
                     textAlign : "center",
@@ -213,7 +214,7 @@ export default function CheckoutScreen(props) {
                       <Text style={{fontSize : 16, color : "black", textAlign : "center", textDecorationLine:"underline"}}>Privacy Policy</Text>
                     </View>
                   </TouchableOpacity>
-                ): (null) } 
+                ): (null) }
               </View>
             </View>
         </View>

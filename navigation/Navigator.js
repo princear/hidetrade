@@ -212,7 +212,7 @@ export const ProfileTabScreens = () => {
           headerBackVisible:false
         })}
       />
-     
+
     </ProfileTab.Navigator>
   );
 };
@@ -1040,7 +1040,7 @@ export const SellTabScreens = () => {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />
-    </SellTab.Navigator>  
+    </SellTab.Navigator>
   );
 };
 
@@ -1080,7 +1080,7 @@ export const FeedbackNavigator=()=>{
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:"", 
+          headerBackTitle:"",
           // headerRight:()=>(<View><Text onPress={()=>{navigation.navigate("ApprovalListFeedback")}} style={{color:'white', fontSize:20, fontWeight:'bold'}}>List</Text></View>)
         })} />
         <FeedbackTab.Screen name="Tanneries Profile"
@@ -1128,7 +1128,7 @@ export const FeedbackNavigator=()=>{
           headerTitleStyle: { fontWeight: "bold" },
           headerBackTitle:""
         }} />
-         
+
     </FeedbackTab.Navigator>
   )
 }
@@ -1145,7 +1145,7 @@ const [userType,setUserType] = useState()
       setDetails()
    });
   console.log(">>>>>@@@>>>>>>",userType)
-  
+
   return (
     <View style={{flex:1}}>
       {isFocused?(
@@ -1153,7 +1153,7 @@ const [userType,setUserType] = useState()
         screenOptions={({ props }) => ({
           tabBarInactiveTintColor: '#dbdbdb',
           tabBarActiveTintColor: "white",
-          tabBarStyle:({height:Platform.OS=='android'?60:90}),
+          tabBarStyle:({height:Platform.OS=='android'?60:100}),
           tabBarShowLabel:true,
           // tabBarShowLabel:false,
           // tabBarLabel:()=>(<View style={{paddingBottom:10}}><Text>H</Text></View>),
@@ -1180,7 +1180,7 @@ const [userType,setUserType] = useState()
                 <Image source={require('../assets/BottomTabIcons/HOMEWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8}}  resizeMode={Platform.OS=='android'?'center':'contain'} />
               ),
             tabBarActiveTintColor: "white",
-            tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Home</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Home</Text>),
+          //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Home</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Home</Text>),
             tabBarItemStyle:({}),
             tabBarAllowFontScaling: true,
             tabBarInactiveTintColor: '#dbdbdb',
@@ -1191,7 +1191,7 @@ const [userType,setUserType] = useState()
             headerTitleStyle: { fontWeight: "bold" },
           })}
         />
-       
+
           <HomeTabNavigator.Screen
             name="Buy "
             component={BuyTabScreens}
@@ -1199,13 +1199,15 @@ const [userType,setUserType] = useState()
               tabBarIcon: ({ focused }) =>
                 focused ? (
                   // <Image source={require('../assets/ByClient/BUYGREEN.png')} style={{width:Platform.OS=='android'?40:35, height:Platform.OS=='android'?40:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'} />
+
                   <Image source={require('../assets/BottomTabIcons/BUYWHITE.png')} style={{ width: Platform.OS == 'android' ? 30 : 35, height: Platform.OS == 'android' ? 30 : 35, tintColor: "white", }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
-                ) : (
+
+                  ) : (
                   // <Image source={require('../assets/ByClient/BUYWHITE.png')} style={{width:Platform.OS=='android'?31:30, height:Platform.OS=='android'?31:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
                   <Image source={require('../assets/BottomTabIcons/BUYWHITE.png')} style={{ width: Platform.OS == 'android' ? 25 : 30, height: Platform.OS == 'android' ? 25 : 30, tintColor: 'white', opacity: 0.8 }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
                 ),
               headerTitleAlign: "center",
-              tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Buy</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 9, marginBottom: 9 }}>Buy</Text>),
+             // tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Buy</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 10, marginBottom: 10 }}>Buy</Text>),
               headerShown: false,
               //headerTitle: "Buy Leathers",
               headerStyle: { backgroundColor: Colors.headerBackground },
@@ -1213,7 +1215,7 @@ const [userType,setUserType] = useState()
               headerTitleStyle: { fontWeight: "bold" },
             })}
           />
-        
+
         {userType != 'Agents' &&
           <HomeTabNavigator.Screen
             name="Sell"
@@ -1228,7 +1230,7 @@ const [userType,setUserType] = useState()
                   <Image source={require('../assets/BottomTabIcons/SELLWHITE.png')} style={{ width: Platform.OS == 'android' ? 25 : 30, height: Platform.OS == 'android' ? 25 : 30, tintColor: 'white', opacity: 0.8 }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
                 ),
               headerShown: false,
-              tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Sell</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 9, marginBottom: 9 }}>Sell</Text>),
+            //  tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Sell</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 9, marginBottom: 9 }}>Sell</Text>),
               headerTitleAlign: "center",
               headerStyle: { backgroundColor: Colors.headerBackground },
               headerTintColor: "white",
@@ -1249,7 +1251,7 @@ const [userType,setUserType] = useState()
                 <Image source={require('../assets/BottomTabIcons/FEEDBACKWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8 }} resizeMode={Platform.OS=='android'?'center':'contain'} />
               ),
               headerShown: false,
-              tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Feedback</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Feedback</Text>),
+            //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Feedback</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Feedback</Text>),
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: Colors.headerBackground },
             headerTintColor: "white",
@@ -1271,7 +1273,7 @@ const [userType,setUserType] = useState()
               <Image source={require('../assets/BottomTabIcons/PROFILEWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8}} resizeMode={Platform.OS=='android'?'center':'contain'} />
             ),
             headerShown: false,
-            tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Profile</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Profile</Text>),
+           // tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Profile</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Profile</Text>),
             headerTitleAlign: "center",
             headerStyle: { backgroundColor: Colors.headerBackground },
             headerTintColor: "white",
@@ -1280,7 +1282,7 @@ const [userType,setUserType] = useState()
         />
       </HomeTabNavigator.Navigator>
       ):null}
-    
+
     </View>
   );
 };
@@ -1308,7 +1310,7 @@ export const StackNavigator = () => {
         options={{ headerShown: false }}
       />
       {/* <Stack.Screen name='Drawer' component={DrawerTabScreens} /> */}
-      
+
       <Stack.Screen
         name="Login"
         component={Login}
@@ -1336,7 +1338,7 @@ export const StackNavigator = () => {
           headerStyle: { backgroundColor: Colors.status },
         }}
       />
-      <Stack.Screen 
+      <Stack.Screen
         name="CheckoutScreen"
         component={CheckoutScreen}
         options={{
@@ -1344,7 +1346,7 @@ export const StackNavigator = () => {
           headerShown : false,
           headerStyle : { backgroundColor: Colors.status },
         }}
-      />  
+      />
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}

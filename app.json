@@ -2,7 +2,7 @@
   "expo": {
     "name": "hidetrade",
     "slug": "hidetrade",
-    "version": "16.0.2",
+    "version": "16.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -14,32 +14,23 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.HideTrade.HideTrade",
-      "buildNumber": "1.0.31"
+      "buildNumber": "1.0.35"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/300.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.HideTrade.Hide",
-      "versionCode": 18,
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ]
+      "package": "com.HideTrade.HideTrade",
+      "versionCode": 19,
+      "permissions": ["android.permission.RECORD_AUDIO"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "246beb0c-6a55-4780-928f-eb6e958e5fd5"
-      }
     },
     "plugins": [
       [
@@ -62,6 +53,11 @@
         }
       ]
     ],
-    "owner" : "eastsons"
+    "owner": "eastsons",
+    "extra": {
+      "eas": {
+        "projectId": "246beb0c-6a55-4780-928f-eb6e958e5fd5"
+      }
+    }
   }
 }
